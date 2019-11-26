@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  job: one
+  applied_at: 2019-11-26 15:31:51
+  relation: 1
+
+two:
+  user: two
+  job: two
+  applied_at: 2019-11-26 15:31:51
+  relation: 1
