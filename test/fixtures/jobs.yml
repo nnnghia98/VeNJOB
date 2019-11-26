@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  level: MyString
+  salary: MyString
+  other_salary: MyString
+  description: MyText
+  short_des: MyText
+  requirement: MyText
+  category: 1
+  post_date: 2019-11-26 15:31:10
+  expiration_date: 2019-11-26 15:31:10
+  company: one
+
+two:
+  title: MyString
+  level: MyString
+  salary: MyString
+  other_salary: MyString
+  description: MyText
+  short_des: MyText
+  requirement: MyText
+  category: 1
+  post_date: 2019-11-26 15:31:10
+  expiration_date: 2019-11-26 15:31:10
+  company: two

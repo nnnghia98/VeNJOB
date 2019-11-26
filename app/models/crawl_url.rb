@@ -1,0 +1,2 @@
+class CrawlUrl < ApplicationRecord
+end
