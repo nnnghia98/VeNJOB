@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
 
       ## Database authenticatable
       t.string :email, null: false, default: ""
-      t.string :username
+      t.string :username, unique: true
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
