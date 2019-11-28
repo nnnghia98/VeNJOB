@@ -81,7 +81,8 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
     t.bigint "user_id", null: false
     t.bigint "job_id", null: false
     t.datetime "applied_at"
-    t.integer "relation"
+    t.datetime "viewed_at"
+    t.datetime "favorited_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["job_id"], name: "index_user_jobs_on_job_id"

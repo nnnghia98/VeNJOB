@@ -4,7 +4,8 @@ class CreateUserJobs < ActiveRecord::Migration[6.0]
       t.references :user, null: false, foreign_key: true
       t.references :job, null: false, foreign_key: true
       t.datetime :applied_at
-      t.integer :relation
+      t.datetime :viewed_at
+      t.datetime :favorited_at
 
       t.timestamps
     end
