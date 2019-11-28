@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) %> | VeNJOB</title>
+    <title><%= full_title(yield(:title)) %></title>
     <%= render  "layouts/rails_default" %>
   </head>
   <body>
     <%= render  "layouts/header" %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+      <%= render "layouts/footer" %>
+    </div>
   </body>
 </html>

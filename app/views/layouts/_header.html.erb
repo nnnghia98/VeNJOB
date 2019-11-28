@@ -1,5 +1,12 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to image_tag("venjob_logo.png", alt: "VeNJOB Logo") , root_path %>
+    <%= link_to image_tag("venjob_logo.png", alt: "VeNJOB Logo") , root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <%= link_to  "Favorite", favorite_path %>
+        <%= link_to  "History", history_path %>
+      </ul>
+    </nav>
+  
   </div>
 </header>
