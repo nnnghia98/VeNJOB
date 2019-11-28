@@ -1,12 +1,23 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-inverse navbar-dark bg-dark">
   <div class="container">
     <%= link_to image_tag("venjob_logo.png", alt: "VeNJOB Logo") , root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <%= link_to  "Favorite", favorite_path %>
-        <%= link_to  "History", history_path %>
+        <ul class="list">
+          <li class="list-item">
+            <li class="list-inline-item"><%= link_to "Login", "#" %></li>
+            <li class="list-inline-item"><%= link_to "Register", "#" %></li>
+          </li>
+          <li class="list-item">
+            <li class="list-inline-item"><%= link_to "Favorite", favorite_path %></li>
+            <li class="list-inline-item"><%= link_to "History", history_path %></li>
+          </li>
+        </ul>
+        <!-- <li><%= link_to "Login", "#" %></li>
+        <li><%= link_to "Register", "#" %></li>
+        <li><%= link_to "Favorite", favorite_path %></li>
+        <li><%= link_to "History", history_path %></li> -->
       </ul>
     </nav>
-  
   </div>
 </header>
