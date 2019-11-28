@@ -81,7 +81,8 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
     t.bigint "user_id", null: false
     t.bigint "job_id", null: false
     t.datetime "applied_at"
-    t.integer "relation"
+    t.datetime "viewed_at"
+    t.datetime "favorited_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["job_id"], name: "index_user_jobs_on_job_id"
@@ -91,19 +92,23 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
+    t.string "email", default: "", null: false
     t.string "username"
-    t.integer "role"
-    t.string "password_digest"
-    t.string "reset_digest"
-    t.datetime "reset_sent_at"
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.string "remember_digest"
-    t.string "activation_digest"
-    t.datetime "activated_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
     t.boolean "activated"
     t.string "cv_path"
+    t.integer "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "city_jobs", "cities"
