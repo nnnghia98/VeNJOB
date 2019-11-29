@@ -24,6 +24,7 @@ gem 'kaminari'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'devise'
+gem 'activerecord-import'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
