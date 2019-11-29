@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">title</th>
+      <th scope="col">level</th>
+      <th scope="col">salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= job.title %></td>
+        <td><%= job.level %></td>
+        <td><%= job.salary %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

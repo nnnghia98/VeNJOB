@@ -2,5 +2,26 @@
 
 <div class="container">
   <div class="banner">
+    <img src="banner.png" alt="Banner">
+  </div>
+
+  <div class="search"></div>
+
+  <div class="lastest_jobs"></div>
+
+  <div class="top_cities">
+    <h3>Top cities</h3>
+
+    <ul class="list-group list-group-horizontal">
+      <%= render partial: "cities/city", collection: @cities %>
+    </ul>
+  </div>
+
+  <div class="top_industries">
+    <h3>Top industries</h3>
+
+    <ul class="list-group list-group-horizontal">
+      <%= render partial: "industries/industry", collection: @industries %>
+    </ul>
   </div>
 </div>
