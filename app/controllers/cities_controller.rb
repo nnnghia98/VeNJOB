@@ -5,5 +5,6 @@ class CitiesController < ApplicationController
 
   def import
     City.cities_import
+    redirect_to root_path, notice: "Cities imported successful!"
   end
 end
