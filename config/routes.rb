@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get 'companies/index'
-  get 'companies/import'
+  get "companies/index"
+  get "companies/import"
+  resources :companies do
+    collection {post :import}
+  end
   get "industries/index"
   get "industries/import"
   resources :industries do

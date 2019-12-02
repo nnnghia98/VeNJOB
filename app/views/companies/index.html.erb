@@ -1,2 +1,20 @@
-<h1>Companies#index</h1>
-<p>Find me in app/views/companies/index.html.erb</p>
+<%= flash[:notice] %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">company name</th>
+      <th scope="col">contact email</th>
+      <th scope="col">company address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td><%= company.email %></td>
+        <td><%= company.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
