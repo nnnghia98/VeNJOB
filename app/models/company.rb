@@ -19,6 +19,6 @@ class Company < ApplicationRecord
       companies << {name: row["company name"], email: row["contact email"], address: row["company address"]}
     end
 
-    City.import columns, companies, on_duplicate_key_ignore: true
+    Company.import columns, companies, on_duplicate_key_ignore: true
   end
 end
