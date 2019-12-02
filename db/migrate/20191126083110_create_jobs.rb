@@ -11,7 +11,7 @@ class CreateJobs < ActiveRecord::Migration[6.0]
       t.integer :category
       t.datetime :post_date
       t.datetime :expiration_date
-      t.references :company, null: false, foreign_key: true
+      t.references :company, foreign_key: true
 
       t.timestamps
     end
