@@ -20,10 +20,10 @@ class Job < ApplicationRecord
 
   def self.jobs_import
     jobs = []
-    columns = [:title, :level, :salary, :description, :short_des, :requirement, :category]
+    columns = [:title, :level, :salary, :description, :short_des, :requirement, :category, :company_id]
 
     CSV.foreach(Rails.root.join("lib", "jobss.csv"), headers: true) do |row|
-      jobs << {title: row["name"], level: row["level"], salary: row["salary"], description: row["description"], short_des: row["benifit"], requirement: row["requirement"], category: row["type"]}
+      jobs << {title: row["name"], level: row["level"], salary: row["salary"], description: row["description"], short_des: row["benefit"], requirement: row["requirement"], category: row["type"]}
     end
 
     Job.import columns, jobs

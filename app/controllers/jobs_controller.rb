@@ -5,5 +5,6 @@ class JobsController < ApplicationController
 
   def import
     Job.jobs_import
+    redirect_to jobs_index_path
   end
 end

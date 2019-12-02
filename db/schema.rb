@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_083335) do
+ActiveRecord::Schema.define(version: 2019_12_02_023440) do
 
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
   end
 
   create_table "city_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "city_id", null: false
-    t.bigint "job_id", null: false
+    t.bigint "city_id"
+    t.bigint "job_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["city_id"], name: "index_city_jobs_on_city_id"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "company_code"
+    t.index ["company_code"], name: "index_companies_on_company_code", unique: true
     t.index ["email"], name: "index_companies_on_email", unique: true
   end
 
@@ -55,8 +57,8 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
   end
 
   create_table "industry_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "industry_id", null: false
-    t.bigint "job_id", null: false
+    t.bigint "industry_id"
+    t.bigint "job_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["industry_id"], name: "index_industry_jobs_on_industry_id"
@@ -74,15 +76,15 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
     t.integer "category"
     t.datetime "post_date"
     t.datetime "expiration_date"
-    t.bigint "company_id", null: false
+    t.bigint "company_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
   create_table "user_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "job_id", null: false
+    t.bigint "user_id"
+    t.bigint "job_id"
     t.datetime "applied_at"
     t.datetime "viewed_at"
     t.datetime "favorited_at"

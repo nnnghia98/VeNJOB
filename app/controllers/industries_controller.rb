@@ -5,5 +5,6 @@ class IndustriesController < ApplicationController
 
   def import
     Industry.industries_import
+    redirect_to root_path
   end
 end
