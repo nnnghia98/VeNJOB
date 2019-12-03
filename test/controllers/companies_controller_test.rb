@@ -5,10 +5,4 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
     get companies_index_url
     assert_response :success
   end
-
-  test "should get import" do
-    get companies_import_url
-    assert_response :success
-  end
-
 end

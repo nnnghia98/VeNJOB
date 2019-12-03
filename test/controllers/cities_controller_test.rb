@@ -5,10 +5,4 @@ class CitiesControllerTest < ActionDispatch::IntegrationTest
     get cities_index_url
     assert_response :success
   end
-
-  test "should get import" do
-    get cities_import_url
-    assert_response :success
-  end
-
 end

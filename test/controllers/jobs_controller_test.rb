@@ -10,5 +10,4 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     get jobs_import_url
     assert_response :success
   end
-
 end

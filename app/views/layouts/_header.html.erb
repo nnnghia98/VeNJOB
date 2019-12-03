@@ -4,14 +4,16 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <ul class="list">
-          <li class="list-item">
+          <% if user_signed_in? %>
+            Logged in as <strong><%= current_user.email %></strong>.
+            <li class="list-inline-item"></li><%= link_to "My Page", "#" %></li>
+            <li class="list-inline-item"></li><%= link_to "Logout", "#" %></li>
+          <% else %>
             <li class="list-inline-item"><%= link_to "Login", "#" %></li>
             <li class="list-inline-item"><%= link_to "Register", "#" %></li>
-          </li>
-          <li class="list-item">
-            <li class="list-inline-item"><%= link_to "Favorite", "#" %></li>
-            <li class="list-inline-item"><%= link_to "History", "#" %></li>
-          </li>
+          <% end %>
+          <li class="list-inline-item"><%= link_to "Favorite", "#" %></li>
+          <li class="list-inline-item"><%= link_to "History", "#" %></li>
         </ul>
       </ul>
     </nav>
