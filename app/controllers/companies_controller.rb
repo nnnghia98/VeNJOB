@@ -5,6 +5,6 @@ class CompaniesController < ApplicationController
 
   def import
     Company.companies_import
-    redirect_to companies_index_path, notice: "Companies imported successful!"
+    redirect_to companies_index_path
   end
 end
