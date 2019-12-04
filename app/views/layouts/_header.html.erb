@@ -5,11 +5,11 @@
       <ul class="nav navbar-nav navbar-right">
         <ul class="list">
           <% if user_signed_in? %>
-            Logged in as <strong><%= current_user.email %></strong>.
+            Logged in as <strong><%= current_user.email %></strong>
             <li class="list-inline-item"></li><%= link_to "My Page", "#" %></li>
-            <li class="list-inline-item"></li><%= link_to "Logout", "#" %></li>
+            <li class="list-inline-item"></li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <li class="list-inline-item"><%= link_to "Login", "#" %></li>
+            <li class="list-inline-item"><%= link_to "Login", new_user_session_path %></li>
             <li class="list-inline-item"><%= link_to "Register", new_user_registration_path %></li>
           <% end %>
           <li class="list-inline-item"><%= link_to "Favorite", "#" %></li>
