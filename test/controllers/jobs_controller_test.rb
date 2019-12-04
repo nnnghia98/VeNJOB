@@ -5,9 +5,4 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
     get jobs_index_url
     assert_response :success
   end
-
-  test "should get import" do
-    get jobs_import_url
-    assert_response :success
-  end
 end
