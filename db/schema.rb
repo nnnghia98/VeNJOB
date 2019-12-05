@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_023059) do
+ActiveRecord::Schema.define(version: 2019_12_05_090113) do
 
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 2019_12_02_023059) do
     t.bigint "company_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "code"
+    t.index ["code"], name: "index_jobs_on_code", unique: true
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
