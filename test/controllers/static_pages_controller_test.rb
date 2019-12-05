@@ -6,7 +6,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get top_page" do
-    get static_pages_index_url
+    get root_path
     assert_response :success
     assert_select "title", "Top Page | #{@base_title}"
   end
