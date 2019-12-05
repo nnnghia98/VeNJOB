@@ -36,12 +36,15 @@ class JobCsv
   end
 
   def company
-    @company ||= Company.find_or_create_by(code: @row["company id"])
+    @company ||= Company.find_by(code: @row["company id"]) ||
+                 Company.create(name: @row["company name"], email: @row["contact email"],
+                                                            address: @row["company address"],
+                                                            code: @row["company id"])
   end
 
   def csv_attributes
-    {title: self.title, level: self.level, salary: self.salary, description: self.description,
-     short_des: self.short_des, requirement: self.requirement, category: self.category,
-     company_id: self.company_id}
+    {title: title, level: level, salary: salary, description: description,
+     short_des: short_des, requirement: requirement, category: category,
+     company_id: company_id}
   end
 end
