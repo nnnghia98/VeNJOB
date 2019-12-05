@@ -12,7 +12,7 @@ class JobImport
       jobs << {title: row["name"], level: row["level"], salary: row["salary"],
                description: row["description"], short_des: row["benefit"],
                requirement: row["requirement"], category: row["type"],
-               company_id: Company.find_by(company_code: row["company id"])&.id}
+               company_id: Company.find_by(code: row["company id"])&.id}
     end
 
     Job.import columns, jobs
