@@ -1,6 +1,4 @@
 require "csv"
-require "activerecord-import"
-# require "activerecord -import/active_record/adapters/mysql_adapter"
 
 class Import
   def import
@@ -27,8 +25,15 @@ class Import
     end
 
     City.import city_columns, cities, on_duplicate_key_ignore: true
+    puts "Cities imported"
+
     Company.import company_columns, companies, on_duplicate_key_ignore: true
+    puts "Companies imported"
+
     Industry.import industry_columns, industries, on_duplicate_key_ignore: true
+    puts "Industries imported"
+
     Job.import job_columns, jobs
+    puts "Jobs imported"
   end
 end

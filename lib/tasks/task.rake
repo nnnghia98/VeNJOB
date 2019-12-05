@@ -1,4 +1,4 @@
-require "./app/services/import.rb"
+# require "./app/services/import.rb"
 
 namespace :task do
   desc "import data"

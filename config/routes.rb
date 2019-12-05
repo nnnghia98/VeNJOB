@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get "companies/index"
-  get "industries/index"
-  get "cities/index"
-  get "jobs/index"
+  resources :companies
+  resources :industries
+  resources :cities
+  resources :jobs
   devise_for :users
   root "static_pages#index"
   get "static_pages/index"
