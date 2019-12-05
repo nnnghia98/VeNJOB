@@ -1,16 +1,1 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">name</th>
-      <th scope="col">region</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cities.each do |city| %>
-      <tr>
-        <td><%= city.name %></td>
-        <td><%= city.region %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: "cities/city", collection: @cities %>

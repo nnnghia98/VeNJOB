@@ -1,14 +1,1 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @industries.each do |industry| %>
-      <tr>
-        <td><%= industry.name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: "industries/industry", collection: @industries %>
