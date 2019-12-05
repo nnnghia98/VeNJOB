@@ -4,7 +4,7 @@ class JobCsv
   end
 
   def title
-    @title ||= @row["title"]
+    @title ||= @row["name"]
   end
 
   def level
