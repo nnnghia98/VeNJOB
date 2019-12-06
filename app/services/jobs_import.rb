@@ -7,8 +7,7 @@ class JobsImport
                    :requirement, :category, :company_id]
 
     CSV.foreach(Rails.root.join("lib", "jobss.csv"), headers: true) do |row|
-      jobcsv = JobCsv.new(row)
-      jobs << jobcsv.csv_attributes
+      jobs << JobCsv.new(row).csv_attributes
     end
 
     Job.import job_columns, jobs

@@ -1,20 +1,7 @@
 <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">company name</th>
-      <th scope="col">contact email</th>
-      <th scope="col">company address</th>
-      <th scope="col">company code</th>
-    </tr>
-  </thead>
   <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.name %></td>
-        <td><%= company.email %></td>
-        <td><%= company.address %></td>
-        <td><%= company.code %></td>
-      </tr>
-    <% end %>
+    <ul class="table">
+      <%= render partial: "companies/company", collection: @companies %>
+    </ul>
   </tbody>
 </table>
