@@ -10,18 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_083335) do
+ActiveRecord::Schema.define(version: 2019_12_05_090113) do
 
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "region"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_cities_on_name", unique: true
   end
 
   create_table "city_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "city_id", null: false
-    t.bigint "job_id", null: false
+    t.bigint "city_id"
+    t.bigint "job_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["city_id"], name: "index_city_jobs_on_city_id"
@@ -35,6 +36,9 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "code"
+    t.index ["code"], name: "index_companies_on_code", unique: true
+    t.index ["email"], name: "index_companies_on_email", unique: true
   end
 
   create_table "crawl_urls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -49,11 +53,12 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_industries_on_name", unique: true
   end
 
   create_table "industry_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "industry_id", null: false
-    t.bigint "job_id", null: false
+    t.bigint "industry_id"
+    t.bigint "job_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["industry_id"], name: "index_industry_jobs_on_industry_id"
@@ -71,15 +76,17 @@ ActiveRecord::Schema.define(version: 2019_11_26_083335) do
     t.integer "category"
     t.datetime "post_date"
     t.datetime "expiration_date"
-    t.bigint "company_id", null: false
+    t.bigint "company_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "code"
+    t.index ["code"], name: "index_jobs_on_code", unique: true
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
   create_table "user_jobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "job_id", null: false
+    t.bigint "user_id"
+    t.bigint "job_id"
     t.datetime "applied_at"
     t.datetime "viewed_at"
     t.datetime "favorited_at"

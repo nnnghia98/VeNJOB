@@ -1,27 +1,31 @@
+# == Schema Information
+#
+# Table name: jobs
+#
+#  id              :bigint           not null, primary key
+#  category        :integer
+#  code            :string(255)
+#  description     :text(65535)
+#  expiration_date :datetime
+#  level           :string(255)
+#  other_salary    :string(255)
+#  post_date       :datetime
+#  requirement     :text(65535)
+#  salary          :string(255)
+#  short_des       :text(65535)
+#  title           :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  company_id      :bigint
+#
+# Indexes
+#
+#  index_jobs_on_code        (code) UNIQUE
+#  index_jobs_on_company_id  (company_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (company_id => companies.id)
+#
+
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  title: MyString
-  level: MyString
-  salary: MyString
-  other_salary: MyString
-  description: MyText
-  short_des: MyText
-  requirement: MyText
-  category: 1
-  post_date: 2019-11-26 15:31:10
-  expiration_date: 2019-11-26 15:31:10
-  company: one
-
-two:
-  title: MyString
-  level: MyString
-  salary: MyString
-  other_salary: MyString
-  description: MyText
-  short_des: MyText
-  requirement: MyText
-  category: 1
-  post_date: 2019-11-26 15:31:10
-  expiration_date: 2019-11-26 15:31:10
-  company: two

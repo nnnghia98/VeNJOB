@@ -1,9 +1,16 @@
+# == Schema Information
+#
+# Table name: cities
+#
+#  id         :bigint           not null, primary key
+#  name       :string(255)
+#  region     :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_cities_on_name  (name) UNIQUE
+#
+
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
-  region: MyString
-
-two:
-  name: MyString
-  region: MyString

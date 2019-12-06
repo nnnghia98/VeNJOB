@@ -1,21 +1,13 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    @base_title = "VeNJOB"
+  end
+
   test "should get top_page" do
     get root_path
     assert_response :success
-    assert_select "title", "VeNJOB"
-  end
-
-  test "should get favorite" do
-    get favorite_url
-    assert_response :success
-    assert_select "title", "Favorite | VeNJOB"
-  end
-
-  test "should get history" do
-    get history_url
-    assert_response :success
-    assert_select "title", "History | VeNJOB"
+    assert_select "title", "Top Page | #{@base_title}"
   end
 end

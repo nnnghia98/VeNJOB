@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  resources :companies, only: :index
+  resources :industries, only: :index
+  resources :cities, only: :index
+  resources :jobs, only: :index
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "static_pages#index"
   get "static_pages/index"
 end
