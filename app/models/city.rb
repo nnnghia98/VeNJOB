@@ -13,9 +13,5 @@
 #  index_cities_on_name  (name) UNIQUE
 #
 
-# In database
-#   t.string :name, unique: true
-#   t.string :region
-
 class City < ApplicationRecord
 end

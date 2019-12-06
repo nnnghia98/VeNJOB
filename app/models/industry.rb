@@ -12,8 +12,5 @@
 #  index_industries_on_name  (name) UNIQUE
 #
 
-# In db
-# t.string :name
-
 class Industry < ApplicationRecord
 end
