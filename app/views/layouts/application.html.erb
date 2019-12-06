@@ -2,10 +2,14 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-    <%= render  "layouts/rails_default" %>
+    <%= render "layouts/rails_default" %>
   </head>
   <body>
-    <%= render  "layouts/header" %>
+    <div class="container-fluid flash-message">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+    <%= render "layouts/header" %>
     <div class="container">
       <%= yield %>
       <%= render "layouts/footer" %>
