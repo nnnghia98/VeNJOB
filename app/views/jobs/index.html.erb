@@ -1,1 +1,9 @@
-<%= render partial: "jobs/job", collection: @jobs %>
+<table class="table">
+  <tbody>
+    <ul class="table">
+      <%= render partial: "jobs/job", collection: @jobs %>
+    </ul>
+  </tbody>
+</table>
+
+<%= paginate @jobs %>

@@ -23,9 +23,12 @@
   <div class="top_cities">
     <h3>Top cities</h3>
 
-    <ul class="list-group list-group-horizontal">
-      <%= render partial: "cities/city", collection: @cities %>
-    </ul>
+    <div class="container">
+      <div class="row row-cols-5">
+        <%= render partial: "cities/city", collection: @cities %>
+      </div>
+    </div>
+    <%= paginate @cities %>
   </div>
 
   <div class="top_industries">

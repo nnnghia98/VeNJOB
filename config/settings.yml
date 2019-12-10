@@ -1,3 +1,7 @@
-jobs:
+table:
   page:
     per: 5
+
+col:
+  page:
+    per: 12
