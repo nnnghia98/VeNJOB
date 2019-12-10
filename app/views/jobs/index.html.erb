@@ -1,9 +1,14 @@
-<table class="table">
-  <tbody>
-    <ul class="table">
-      <%= render partial: "jobs/job", collection: @jobs %>
-    </ul>
-  </tbody>
-</table>
-
-<%= paginate @jobs %>
+<div class="container">
+  <h2>Total: </h2>
+  <h2>Result for: </h2>
+  <br>
+  <%= paginate @jobs %>
+  <table class="table">
+    <tbody>
+      <ul class="table">
+        <%= render partial: "jobs/job", collection: @jobs %>
+      </ul>
+    </tbody>
+  </table>
+  <%= paginate @jobs %>
+</div>
