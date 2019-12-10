@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
   def index
-    @cities = City.all
+    @cities = City.page(params[:page]).per(Settings.col.page.per)
   end
 end

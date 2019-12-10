@@ -1,15 +1,31 @@
 <div class="text-center">
   <div class="container jumbotron">
     <h1>City List</h1>
-    <div class="=row">
-      <a href="#vietnam" class="col-sm-6">
-        <div class="tag"> Vietnam</div>
-      </a>
-      <a href="#interational" class="col-sm-6">
-        <div class="tag">International</div>
-      </a>
+    <div class="row">
+      <div class="col-sm">
+        <a href="#vietnam">
+          <div class="tag">Vietnam</div>
+        </a>
+      </div>
+      <div class="col-sm">
+        <a href="#interational">
+          <div class="tag">International</div>
+        </a>
+      </div>
     </div>
   </div>
 </div><br>
 
-<%= render partial: "cities/city", collection: @cities %>
+<div class="container-fluid">
+  <div class="tag text-center" id="vietnam">Vietnam</div><br>
+  <div class="container">
+    <div class="row row-cols-5">
+      <%= render partial: "cities/city", collection: @cities %>
+    </div>
+  </div>
+  <%= paginate @cities %>
+</div><br>
+
+<div class="container-fluid">
+  <div class="tag text-center" id="interational">International</div><br>
+</div><br>
