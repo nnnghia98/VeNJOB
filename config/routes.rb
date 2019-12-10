@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "static_pages#index"
   get "static_pages/index"
-  get "my", to: "users/my_page#index"
+  namespace :users do
+    resource :my_page, only: :show
+  end
 end
