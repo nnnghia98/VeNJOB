@@ -6,7 +6,7 @@
         <ul class="list">
           <% if user_signed_in? %>
             Logged in as <strong><%= current_user.email %></strong>
-            <li class="list-inline-item"></li><%= link_to "My Page", "#" %></li>
+            <li class="list-inline-item"></li><%= link_to "My Page", my_path %></li>
             <li class="list-inline-item"></li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li class="list-inline-item"><%= link_to "Login", new_user_session_path %></li>
