@@ -1,5 +1,5 @@
 class IndustriesController < ApplicationController
   def index
-    @industries = Industry.all
+    @industries = Industry.page(params[:page]).per(Settings.col.page.per)
   end
 end
