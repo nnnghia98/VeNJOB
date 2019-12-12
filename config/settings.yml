@@ -1,3 +1,2 @@
-jobs:
-  page:
-    per: 5
+job:
+  per_page: 5

@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def index
-    @cities = City.all
+    @vn_cities = City.vn_cities
     @industries  = Industry.all
-    @jobs = Job.page(params[:page]).per(Settings.jobs.page.per)
+    @jobs = Job.page(params[:page]).per(Settings.job.per_page)
   end
 end

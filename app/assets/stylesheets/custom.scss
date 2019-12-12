@@ -93,3 +93,19 @@ footer {
 .flash-message {
   padding-top: 15px;
 }
+
+/* grid */
+
+.col-show {
+  border: 1px solid black;
+  border-radius: 3px;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+}
+
+/* smooth scroll */
+
+html {
+  scroll-behavior: smooth;
+}

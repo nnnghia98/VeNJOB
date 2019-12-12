@@ -1,1 +1,4 @@
-<%= render partial: "jobs/job", collection: @jobs %>
+<div>
+  <%= render partial: "jobs/job", collection: @jobs %>
+</div>
+<%= paginate @jobs %>

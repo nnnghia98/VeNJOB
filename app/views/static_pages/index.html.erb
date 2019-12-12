@@ -10,22 +10,20 @@
   <div class="lastest_jobs">
     <h3>Latest jobs</h3>
 
-    <table class="table">
-      <tbody>
-        <ul class="table">
-          <%= render partial: "jobs/job", collection: @jobs %>
-        </ul>
-      </tbody>
-    </table>
+    <div>
+      <%= render partial: "jobs/job", collection: @jobs %>
+    </div>
     <%= paginate @jobs %>
   </div>
 
   <div class="top_cities">
     <h3>Top cities</h3>
 
-    <ul class="list-group list-group-horizontal">
-      <%= render partial: "cities/city", collection: @cities %>
-    </ul>
+    <div class="container">
+      <div class="row row-cols-4">
+        <%= render partial: "cities/city", collection: @vn_cities %>
+      </div>
+    </div>
   </div>
 
   <div class="top_industries">
