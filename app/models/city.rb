@@ -14,6 +14,10 @@
 #
 
 class City < ApplicationRecord
+<<<<<<< HEAD
   scope :vn_cities, -> {where region: "Việt Nam"}
   scope :inter_cities, -> {where region: "#"}
+=======
+  has_many :city_jobs
+>>>>>>> first edit this branch
 end

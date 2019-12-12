@@ -22,4 +22,12 @@
 class CityJob < ApplicationRecord
   belongs_to :city
   belongs_to :job
+
+  def city_id
+    self.city.id
+  end
+
+  def job_id
+    self.job.id
+  end
 end
