@@ -10,13 +10,9 @@
   <div class="lastest_jobs">
     <h3>Latest jobs</h3>
 
-    <table class="table">
-      <tbody>
-        <ul class="table">
-          <%= render partial: "jobs/job", collection: @jobs %>
-        </ul>
-      </tbody>
-    </table>
+    <div class="job-list">
+      <%= render partial: "jobs/job", collection: @jobs %>
+    </div>
     <%= paginate @jobs %>
   </div>
 
