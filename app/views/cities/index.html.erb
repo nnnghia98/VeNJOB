@@ -16,11 +16,14 @@
 
 <div class="container-fluid">
   <div class="tag text-center" id="vietnam">Vietnam</div>
-  <div class="row row-cols-5">
-    <%= render partial: "cities/city", collection: @cities %>
+  <div class="row row-cols-4">
+    <%= render partial: "cities/city", collection: @vn_cities %>
   </div>
 </div>
 
 <div class="container-fluid">
   <div class="tag text-center" id="interational">International</div>
+  <div class="row row-cols-4">
+    <%= render partial: "cities/city", collection: @inter_cities %>
+  </div>
 </div>

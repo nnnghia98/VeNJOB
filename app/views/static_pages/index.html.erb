@@ -20,11 +20,10 @@
     <h3>Top cities</h3>
 
     <div class="container">
-      <div class="row row-cols-5">
-        <%= render partial: "cities/city", collection: @cities %>
+      <div class="row row-cols-4">
+        <%= render partial: "cities/city", collection: @vn_cities %>
       </div>
     </div>
-    <%= paginate @cities %>
   </div>
 
   <div class="top_industries">
