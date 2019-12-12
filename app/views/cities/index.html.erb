@@ -1,31 +1,27 @@
-<div class="text-center">
-  <div class="container jumbotron">
-    <h1>City List</h1>
-    <div class="row">
-      <div class="col-sm">
-        <a href="#vietnam">
-          <div class="tag">Vietnam</div>
-        </a>
-      </div>
-      <div class="col-sm">
-        <a href="#interational">
-          <div class="tag">International</div>
-        </a>
-      </div>
+<div class="container jumbotron text-center">
+  <h1>City List</h1>
+  <div class="row">
+    <div class="col-sm">
+      <a href="#vietnam">
+        <div class="tag">Vietnam</div>
+      </a>
+    </div>
+    <div class="col-sm">
+      <a href="#interational">
+        <div class="tag">International</div>
+      </a>
     </div>
   </div>
-</div><br>
+</div>
 
 <div class="container-fluid">
-  <div class="tag text-center" id="vietnam">Vietnam</div><br>
-  <div class="container">
-    <div class="row row-cols-5">
-      <%= render partial: "cities/city", collection: @cities %>
-    </div>
+  <div class="tag text-center" id="vietnam">Vietnam</div>
+  <div class="row row-cols-5">
+    <%= render partial: "cities/city", collection: @cities %>
   </div>
+</div>
   <%= paginate @cities %>
-</div><br>
 
 <div class="container-fluid">
-  <div class="tag text-center" id="interational">International</div><br>
-</div><br>
+  <div class="tag text-center" id="interational">International</div>
+</div>
