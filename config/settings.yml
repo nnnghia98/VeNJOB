@@ -1,7 +1,5 @@
-table:
-  page:
-    per: 5
+job:
+  per_page: 5
 
-col:
-  page:
-    per: 12
+city:
+  per_page: 12
