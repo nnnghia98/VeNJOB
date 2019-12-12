@@ -15,5 +15,5 @@
 
 class City < ApplicationRecord
   scope :vn_cities, -> {where region: "Việt Nam"}
-  scope :inter_cities, -> {where region: "International"}
+  scope :inter_cities, -> {where region: "#"}
 end
