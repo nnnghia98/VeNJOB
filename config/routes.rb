@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :jobs, only: :index
   devise_for :users
   root "tops#index"
-  get "tops/index"
   namespace :users do
     resource :my_page, only: :show
   end

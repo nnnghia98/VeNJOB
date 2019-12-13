@@ -5,31 +5,26 @@ class JobsImport
     jobs = []
     job_columns = [:title, :level, :salary, :description, :short_des,
                    :requirement, :category, :company_id]
-    city_jobs = []
-    industry_jobs = []
+    join_jobs = []
 
     CSV.foreach(Rails.root.join("lib", "jobss.csv"), headers: true) do |row|
       job_csv = JobCsv.new(row)
       jobs << job_csv.csv_attributes
-      city_jobs << [row["company province"], job_csv.title, job_csv.company_id]
-      industry_jobs << [row["category"], job_csv.title, job_csv.company_id]
+      join_jobs << [row["company province"], row["category"], job_csv.title, job_csv.company_id]
     end
 
     Job.import job_columns, jobs
     puts "Jobs imported"
 
-    city_jobs.each do |city_name, job_title, company_id|
+    join_jobs.each do |city_name,industry_name, job_title, company_id|
       job = Job.find_by(title: job_title, company_id: company_id)
       city = City.find_by(name: city_name)
       job.city_jobs.create(city_id: city.id)
-    end
-    puts "Have data in city_jobs table"
-
-    industry_jobs.each do |industry_name, job_title, company_id|
-      job = Job.find_by(title: job_title, company_id: company_id)
       industry = Industry.find_by(name: industry_name)
       job.industry_jobs.create(industry_id: industry.id)
     end
+
+    puts "Have data in city_jobs table"
     puts "Have data in industry_jobs table"
   end
 end
