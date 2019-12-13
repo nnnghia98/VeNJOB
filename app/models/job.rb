@@ -31,4 +31,6 @@
 class Job < ApplicationRecord
   belongs_to :company
 
+  has_many :city_jobs
   has_many :cities, through: :city_jobs
+end

@@ -14,7 +14,9 @@
 #
 
 class City < ApplicationRecord
+  has_many :city_jobs
+  has_many :jobs, through: :city_jobs
+
   scope :vn_cities, -> {where region: "Việt Nam"}
   scope :inter_cities, -> {where region: "#"}
-  has_many :city_jobs
 end
