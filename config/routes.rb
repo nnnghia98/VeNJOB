@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :cities, only: :index
   resources :jobs, only: :index
   devise_for :users
-  root "static_pages#index"
-  get "static_pages/index"
+  root "tops#index"
+  get "tops/index"
   namespace :users do
     resource :my_page, only: :show
   end

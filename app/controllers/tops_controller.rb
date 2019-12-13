@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class TopsController < ApplicationController
   def index
     @vn_cities = City.vn_cities
     @industries  = Industry.all
