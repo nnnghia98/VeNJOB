@@ -1,7 +1,7 @@
 require "csv"
 
 class Import
-  def initialize()
+  def initialize
   end
 
   def import
@@ -22,9 +22,12 @@ class Import
 
     CSV.foreach(Rails.root.join("lib", file_path), headers: true) do |row|
       cities << {name: row["company province"], region: "Việt Nam"}
+
       companies << {name: row["company name"], email: row["contact email"],
         address: row["company address"], code: row["company id"]}
+
       industries << {name: row["category"]}
+
       job_csv = JobCsv.new(row)
       jobs << job_csv.csv_attributes
       join_jobs << [row["company province"], row["category"], job_csv.title, job_csv.company_id]
@@ -59,7 +62,7 @@ class Import
 
   def jobs_import(col_arr, arr)
     return if col_arr.blank?
-    Job.import col_arr, paraarrm2
+    Job.import col_arr, arr
   end
 
   def join_jobs_import(param)
