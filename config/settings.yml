@@ -1,2 +1,5 @@
 job:
   per_page: 5
+
+csv:
+  file_path: "jobss.csv"

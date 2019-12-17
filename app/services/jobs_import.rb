@@ -7,7 +7,9 @@ class JobsImport
                    :requirement, :category, :company_id]
     join_jobs = []
 
-    CSV.foreach(Rails.root.join("lib", "jobss.csv"), headers: true) do |row|
+    file_path = Settings.csv.file_path
+
+    CSV.foreach(Rails.root.join("lib", file_path), headers: true) do |row|
       job_csv = JobCsv.new(row)
       jobs << job_csv.csv_attributes
       join_jobs << [row["company province"], row["category"], job_csv.title, job_csv.company_id]
@@ -22,7 +24,5 @@ class JobsImport
       industry = Industry.find_by(name: industry_name)
       job.industry_jobs.create(industry_id: industry.id)
     end
-
-    puts "See import.log for more details."
   end
 end

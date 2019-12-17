@@ -1,6 +1,10 @@
 require "csv"
 
 class Import
+  def initialize(params = {})
+
+  end
+
   def import
     cities = []
     companies = []
@@ -10,7 +14,9 @@ class Import
     company_columns = [:name, :email, :address, :code]
     industry_columns = [:name]
 
-    CSV.foreach(Rails.root.join("lib", "jobss.csv"), headers: true) do |row|
+    file_path = Settings.csv.file_path
+
+    CSV.foreach(Rails.root.join("lib", file_path), headers: true) do |row|
       cities << {name: row["company province"], region: "Việt Nam"}
       companies << {name: row["company name"], email: row["contact email"],
         address: row["company address"], code: row["company id"]}

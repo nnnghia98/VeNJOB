@@ -5,6 +5,6 @@ namespace :task do
     JobsImport.new.import_job
 
     import = ActiveSupport::Logger.new("log/import.log")
-    import.debug "Cities, industries, companies, jobs imported: #{Time.current}"
+    import.info "Cities, industries, companies, jobs imported: #{Time.current}"
   end
 end

@@ -21,6 +21,6 @@ class City < ApplicationRecord
   scope :inter_cities, -> {where region: "#"}
 
   def job_count
-    jobs.count
+    @job_count ||=jobs.count
   end
 end
