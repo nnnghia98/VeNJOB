@@ -1,0 +1,8 @@
+<h3>Top cities</h3>
+
+<div class="container">
+  <div class="row row-cols-4">
+    <%= render partial: "cities/city", collection: @vn_cities %>
+  </div>
+  <%= link_to "All cities", cities_path, class: "btn btn-lg btn-primary" %>
+</div>
