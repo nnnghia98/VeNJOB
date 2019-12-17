@@ -3,5 +3,8 @@ namespace :task do
   task import: :environment do
     Import.new.import
     JobsImport.new.import_job
+
+    import = ActiveSupport::Logger.new("log/import.log")
+    import.debug "Cities, industries, companies, jobs imported: #{Time.current}"
   end
 end

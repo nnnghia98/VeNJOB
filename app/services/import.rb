@@ -18,12 +18,7 @@ class Import
     end
 
     City.import city_columns, cities, on_duplicate_key_ignore: true
-    puts "Cities imported"
-
     Company.import company_columns, companies, on_duplicate_key_ignore: true
-    puts "Companies imported"
-
     Industry.import industry_columns, industries, on_duplicate_key_ignore: true
-    puts "Industries imported"
   end
 end

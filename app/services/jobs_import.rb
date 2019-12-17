@@ -14,7 +14,6 @@ class JobsImport
     end
 
     Job.import job_columns, jobs
-    puts "Jobs imported"
 
     join_jobs.each do |city_name,industry_name, job_title, company_id|
       job = Job.find_by(title: job_title, company_id: company_id)
@@ -24,7 +23,6 @@ class JobsImport
       job.industry_jobs.create(industry_id: industry.id)
     end
 
-    puts "Have data in city_jobs table"
-    puts "Have data in industry_jobs table"
+    puts "See import.log for more details."
   end
 end
