@@ -23,4 +23,8 @@ class City < ApplicationRecord
   def job_count
     @job_count ||= jobs.count
   end
+
+  def self.city_order
+    @city_order ||= all.sort_by(&:job_count).reverse
+  end
 end

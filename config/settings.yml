@@ -3,3 +3,7 @@ job:
 
 csv:
   file_path: "jobss.csv"
+
+top:
+  city:
+    limit: 9
