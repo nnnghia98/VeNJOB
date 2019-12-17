@@ -17,13 +17,7 @@
   </div>
 
   <div class="top_cities">
-    <h3>Top cities</h3>
-
-    <div class="container">
-      <div class="row row-cols-4">
-        <%= render partial: "cities/city", collection: @vn_cities %>
-      </div>
-    </div>
+    <%= render partial: "shared/top_cities" %>
   </div>
 
   <div class="top_industries">
