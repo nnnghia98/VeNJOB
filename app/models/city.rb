@@ -19,4 +19,8 @@ class City < ApplicationRecord
 
   scope :vn_cities, -> {where region: "Việt Nam"}
   scope :inter_cities, -> {where region: "#"}
+
+  def job_count
+    jobs.count
+  end
 end
