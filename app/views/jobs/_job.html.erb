@@ -1,5 +1,21 @@
-<div>
-  <%= job.title %>
-  <%= job.short_des %>
-  <%= job.salary %>
+<div class="box">
+  <div class="job_data">
+    <dl class="job_data_row">
+      <dt>Title</dt>
+      <dd><%= job.title %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Short description</dt>
+      <dd><%= job.short_des %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Salary</dt>
+      <dd><%= job.salary %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Location</dt>
+      <dd><%= job.cities.first.name %></dd>
+    </dl>
+  </div>
+  <button type="button" class="btn btn-light">Favorite</button>
 </div>

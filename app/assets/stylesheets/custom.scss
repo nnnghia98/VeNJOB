@@ -123,3 +123,37 @@ html {
 .top_cities {
   margin: 20px;
 }
+
+/* job */
+
+.box {
+  border: solid 1px black;
+  margin: 10px;
+  padding: 5px;
+  .job_data {
+    width: 100%;
+    .job_data_row {
+      display: table;
+      width: 100%;
+      padding: 1px 0 0 0;
+      dt {
+        display: table-cell;
+        margin: 1px 0 0 0;
+        width: 100px;
+        padding: 0 0 0 8px;
+        font-weight: bold;
+        line-height: 32px;
+        vertical-align: top;
+      }
+      dd {
+        display: table-cell;
+        padding: 8px 3px 8px 8px;
+      }
+    }
+  }
+}
+
+dl, dt, dd {
+  list-style-type: none;
+  line-height: normal;
+}
