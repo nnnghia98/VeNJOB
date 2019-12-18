@@ -14,7 +14,7 @@
     </dl>
     <dl class="job_data_row">
       <dt>Location</dt>
-      <dd><%= job.cities.first.name %></dd>
+      <dd><%= job.cities.first.try(:name) %></dd>
     </dl>
   </div>
   <button type="button" class="btn btn-outline-secondary">Favorite</button>

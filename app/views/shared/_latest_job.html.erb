@@ -2,19 +2,19 @@
   <div class="job_data">
     <dl class="job_data_row">
       <dt>Title</dt>
-      <dd><%= latest_jobs.title %></dd>
+      <dd><%= latest_job.title %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Short description</dt>
-      <dd><%= truncate(latest_jobs.short_des, length: 250) %></dd>
+      <dd><%= truncate(latest_job.short_des, length: 250) %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Salary</dt>
-      <dd><%= latest_jobs.salary %></dd>
+      <dd><%= latest_job.salary %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Location</dt>
-      <dd><%= latest_jobs.cities.first.name %></dd>
+      <dd><%= latest_job.cities.first.try(:name) %></dd>
     </dl>
   </div>
 </div>
