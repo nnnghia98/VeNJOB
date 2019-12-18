@@ -23,13 +23,6 @@
   </div>
 
   <div class="top_industries">
-    <h3>Top industries</h3>
-
-    <div class="container">
-      <div class="row row-cols-5">
-        <%= render partial: "industries/industry", collection: @industries %>
-      </div>
-    </div>
-    <%= paginate @industries %>
+    <%= render partial: "shared/top_industries"%>
   </div>
 </div>
