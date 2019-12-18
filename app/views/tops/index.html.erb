@@ -2,8 +2,10 @@
 
 <div class="center jumbotron">
   <div class="banner">
-    <img src="banner.png" alt="Banner">
+    <%= image_tag ("skyline_darker.jpg") %>
   </div>
+
+  <h2>Total jobs: <%= Job.count %></h2>
 
   <div class="search"></div>
 
@@ -17,14 +19,10 @@
   </div>
 
   <div class="top_cities">
-    <%= render partial: "shared/top_cities" %>
+    <%= render "shared/top_cities" %>
   </div>
 
   <div class="top_industries">
-    <h3>Top industries</h3>
-
-    <ul class="list-group list-group-horizontal">
-      <%= render partial: "industries/industry", collection: @industries %>
-    </ul>
+    <%= render "shared/top_industries"%>
   </div>
 </div>

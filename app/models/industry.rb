@@ -15,4 +15,12 @@
 class Industry < ApplicationRecord
   has_many :industry_jobs
   has_many :jobs, through: :industry_jobs
+
+  def job_count
+    @job_count ||= jobs.count
+  end
+
+  def self.industry_order
+    @industry_order ||= all.sort_by(&:job_count).reverse
+  end
 end

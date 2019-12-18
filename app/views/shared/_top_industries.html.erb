@@ -1,0 +1,8 @@
+<h3>Top industries</h3>
+
+<div class="container">
+  <div class="row row-cols-5">
+    <%= render partial: "industries/industry", collection: @industries %>
+  </div>
+  <%= link_to "All industries", industries_path, class: "btn btn-lg btn-info" %>
+</div>
