@@ -13,9 +13,8 @@
     <h3>Latest jobs</h3>
 
     <div>
-      <%= render partial: "jobs/job", collection: @jobs %>
+      <%= render partial: "shared/latest_jobs", collection: @jobs %>
     </div>
-    <%= paginate @jobs %>
   </div>
 
   <div class="top_cities">

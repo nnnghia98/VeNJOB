@@ -7,3 +7,5 @@ csv:
 top:
   city:
     limit: 9
+  job:
+    limit: 5
