@@ -6,7 +6,7 @@
     </dl>
     <dl class="job_data_row">
       <dt>Short description</dt>
-      <dd><%= job.short_des %></dd>
+      <dd><%= truncate(job.short_des, length: 250) %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Salary</dt>
