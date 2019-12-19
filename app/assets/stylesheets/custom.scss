@@ -38,13 +38,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
@@ -156,4 +149,10 @@ html {
 dl, dt, dd {
   list-style-type: none;
   line-height: normal;
+}
+
+.breadcrump {
+  font-weight: lighter;
+  font-size: 12px;
+  margin-bottom: 15px;
 }
