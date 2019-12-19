@@ -1,4 +1,8 @@
-<div>
-  <%= render partial: "jobs/job", collection: @jobs %>
-</div>
+<h3>Total: <%= Job.count %></h3>
+<h3>Result for: </h3>
+
+<%= paginate @jobs %>
+
+<%= render partial: "jobs/job", collection: @jobs %>
+
 <%= paginate @jobs %>

@@ -1,5 +1,5 @@
 job:
-  per_page: 5
+  per_page: 20
 
 csv:
   file_path: "jobss.csv"
@@ -7,3 +7,5 @@ csv:
 top:
   city:
     limit: 9
+  job:
+    limit: 5

@@ -2,20 +2,19 @@
   <div class="job_data">
     <dl class="job_data_row">
       <dt>Title</dt>
-      <dd><%= job.title %></dd>
+      <dd><%= latest_job.title %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Short description</dt>
-      <dd><%= truncate(job.short_des, length: 250) %></dd>
+      <dd><%= truncate(latest_job.short_des, length: 250) %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Salary</dt>
-      <dd><%= job.salary %></dd>
+      <dd><%= latest_job.salary %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Location</dt>
-      <dd><%= job&.cities&.first&.name %></dd>
+      <dd><%= latest_job&.cities&.first&.name %></dd>
     </dl>
   </div>
-  <button type="button" class="btn btn-outline-secondary">Favorite</button>
 </div>

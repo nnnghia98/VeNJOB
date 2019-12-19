@@ -36,4 +36,8 @@ class Job < ApplicationRecord
 
   has_many :industry_jobs
   has_many :industries, through: :industry_jobs
+
+  def self.latest_job
+    @latest_job ||= Job.order(updated_at: :desc).take(Settings.top.job.limit)
+  end
 end
