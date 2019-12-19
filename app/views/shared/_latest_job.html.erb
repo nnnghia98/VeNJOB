@@ -14,7 +14,7 @@
     </dl>
     <dl class="job_data_row">
       <dt>Location</dt>
-      <dd><%= latest_job.cities.first.try(:name) %></dd>
+      <dd><%= latest_job&.cities&.first&.name %></dd>
     </dl>
   </div>
 </div>
