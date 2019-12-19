@@ -13,7 +13,7 @@ class JobDecorator < ApplicationDecorator
   end
 
   def display_short_des
-    object.short_des&.truncate(250)
+    simple_format object.short_des&.truncate(250)
   end
 
   def display_description
