@@ -25,6 +25,6 @@ class City < ApplicationRecord
   end
 
   def self.city_order
-    @city_order ||= all.sort_by(&:job_count).reverse
+    @city_order ||= all.sort_by(&:job_count).reverse.take(Settings.top.city.limit)
   end
 end

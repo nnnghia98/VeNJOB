@@ -21,6 +21,6 @@ class Industry < ApplicationRecord
   end
 
   def self.industry_order
-    @industry_order ||= all.sort_by(&:job_count).reverse
+    @industry_order ||= all.sort_by(&:job_count).reverse.take(Settings.top.city.limit)
   end
 end

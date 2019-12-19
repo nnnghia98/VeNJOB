@@ -1,7 +1,7 @@
 class TopsController < ApplicationController
   def index
-    @vn_cities = City.city_order.take(Settings.top.city.limit)
-    @industries = Industry.industry_order.take(Settings.top.city.limit)
+    @vn_cities = City.city_order
+    @industries = Industry.industry_order
     @jobs = Job.latest_job
   end
 end

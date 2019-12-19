@@ -3,10 +3,10 @@ class JobDecorator < Draper::Decorator
   decorates_association :city
 
   def city_name
-    object&.cities&.first&.name
+    object.cities&.first&.name
   end
 
   def display_short_des
-    object.short_des.truncate(250)
+    object.short_des&.truncate(250)
   end
 end
