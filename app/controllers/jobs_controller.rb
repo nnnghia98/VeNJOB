@@ -2,12 +2,12 @@ class JobsController < ApplicationController
   def index
     if params[:city_id]
       redirect_to jobs_path if params[:city_id].blank?
-      @city_name = City.find(params[:city_id])
-      @jobs = @city_name.jobs
+      @city = City.find(params[:city_id])
+      @jobs = @city.jobs
     elsif params[:industry_id]
       redirect_to jobs_path if params[:industry_id].blank?
-      @industry_name = Industry.find(params[:industry_id])
-      @jobs = @industry_name.jobs
+      @industry = Industry.find(params[:industry_id])
+      @jobs = @industry.jobs
     else
       @jobs = Job.all
     end
