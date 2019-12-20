@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :industries, only: :index
   resources :cities, only: :index
   resources :jobs, only: [:index, :show]
+  get "jobs/city/:city_id", to: "jobs#index", as: :city_jobs
+  get "jobs/industry/:industry_id", to: "jobs#index", as: :industry_jobs
   devise_for :users
   root "tops#index"
   namespace :users do
