@@ -123,10 +123,10 @@ html {
 /* job */
 
 .box {
-  border: solid 1px rgb(26, 101, 131);
-  border-radius: 10px;
-  margin: 10px;
-  padding: 5px;
+  border-radius: .25rem;
+  background-color: rgba(226, 251, 253, 0.801);
+  margin-bottom: 15px;
+  padding: 10px;
   .job_data {
     width: 100%;
     .job_data_row {
