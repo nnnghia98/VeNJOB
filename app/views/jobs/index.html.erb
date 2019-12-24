@@ -1,4 +1,5 @@
-<h3>Total: <%= Job.count %></h3>
+<h3>Total: <%= params[:city_id] ? @city.jobs.count :
+              (params[:industry_id] ? @industry.jobs.count : Job.count) %></h3>
 <h3>Result for: </h3>
 
 <%= paginate @jobs %>
