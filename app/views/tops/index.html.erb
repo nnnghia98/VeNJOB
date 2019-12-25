@@ -1,7 +1,7 @@
 <% provide(:title, "Top Page") %>
 
-<div class="center jumbotron">
-  <div class="banner">
+<div class="jumbotron">
+  <div class="banner text-center">
     <%= image_tag ("skyline_darker.jpg") %>
   </div>
 
@@ -9,19 +9,19 @@
 
   <div class="search"></div>
 
-  <div class="lastest_jobs">
-    <h3>Latest jobs</h3>
+  <div class="latest_jobs">
+    <h3 class="text-center">Latest jobs</h3>
 
     <div>
-      <%= render partial: "shared/latest_job", collection: @jobs %>
+      <%= render partial: "shared/latest_job", collection: @latest_jobs %>
     </div>
   </div>
 
-  <div class="top_cities">
+  <div class="top_cities text-center">
     <%= render "shared/top_cities" %>
   </div>
 
-  <div class="top_industries">
+  <div class="top_industries text-center">
     <%= render "shared/top_industries"%>
   </div>
 </div>

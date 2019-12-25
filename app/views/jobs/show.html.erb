@@ -1,0 +1,34 @@
+<div class="breadcrumb">
+  <%= link_to "Top", root_path %> >
+  <%= link_to "City", cities_path %> >
+  <%= link_to "Industry", industries_path %> >
+  <%= @job.title %>
+</div>
+<div class="box">
+  <h1>
+    <%= @job.title %>
+  </h1>
+  <div class="job_data">
+    <dl class="job_data_row">
+      <dt>Company</dt>
+      <dd><%= @job.company_name %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Location</dt>
+      <dd><%= @job.city_name %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Salary</dt>
+      <dd><%= @job.salary %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Description</dt>
+      <dd><%= @job.display_description %></dd>
+    </dl>
+  </div>
+</div>
+
+<div class="job_detail_button">
+  <%= link_to "Favorite", "#", class: "btn btn-primary float-right" %>
+  <%= link_to "Apply", "#", class: "btn btn-primary float-right mx-3" %>
+</div>

@@ -26,7 +26,6 @@ textarea {
 }
 
 .center {
-  text-align: center;
   h1 {
     margin-bottom: 10px;
   }
@@ -36,13 +35,6 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
 }
 
 h2 {
@@ -127,9 +119,10 @@ html {
 /* job */
 
 .box {
-  border: solid 1px black;
-  margin: 10px;
-  padding: 5px;
+  border-radius: .25rem;
+  background-color: rgba(226, 251, 253, 0.801);
+  margin-bottom: 15px;
+  padding: 10px;
   .job_data {
     width: 100%;
     .job_data_row {
@@ -156,4 +149,15 @@ html {
 dl, dt, dd {
   list-style-type: none;
   line-height: normal;
+}
+
+.breadcrumb {
+  font-weight: lighter;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.job_detail_button {
+  margin: 10px;
+  padding: 5px;
 }
