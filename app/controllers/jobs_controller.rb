@@ -22,4 +22,22 @@ class JobsController < ApplicationController
     redirect_to jobs_path if params[:job_id].blank?
     @job_id = params[:job_id]
   end
+
+  def confirm_apply
+
+  end
+
+  def finish_apply
+    @apply_first_name = params["confirm_apply_info"]["first_name"]
+    @apply_last_name = params["confirm_apply_info"]["last_name"]
+    @apply_email = params["confirm_apply_info"]["email"]
+    @job_id = params["confirm_apply_info"]["job_id"]
+
+    if params[:commit] == "Edit"
+      render "jobs/apply"
+    else
+      UserJob.find_by(user_id: current_user.id, job_id: @job_id) ||
+      UserJob.create!(user_id: current_user.id, job_id: @job_id, applied_at: Time.current)
+    end
+  end
 end
