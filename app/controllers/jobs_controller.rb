@@ -28,16 +28,14 @@ class JobsController < ApplicationController
   end
 
   def finish_apply
-    @apply_first_name = params["confirm_apply_info"]["first_name"]
-    @apply_last_name = params["confirm_apply_info"]["last_name"]
-    @apply_email = params["confirm_apply_info"]["email"]
-    @job_id = params["confirm_apply_info"]["job_id"]
+    @apply_info = params[:confirm_apply_info]
+    @job_id = params[:confirm_apply_info][:job_id]
 
     if params[:commit] == "Edit"
-      render "jobs/apply"
+      redirect_to apply_path(job_id: @job_id)
     else
-      UserJob.find_by(user_id: current_user.id, job_id: @job_id) ||
-      UserJob.create!(user_id: current_user.id, job_id: @job_id, applied_at: Time.current)
+      current_user.user_jobs.find_by(user_id: current_user.id, job_id: @job_id) ||
+      current_user.user_jobs.create!(user_id: current_user.id, job_id: @job_id, applied_at: Time.current)
     end
   end
 end
