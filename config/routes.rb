@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   devise_for :users
   root "tops#index"
   namespace :users do
-    resource :my_page, only: :show
+    resource :my_page, only: :show do
+      get "/jobs", to: "my_pages#applied_jobs"
+    end
   end
 end
