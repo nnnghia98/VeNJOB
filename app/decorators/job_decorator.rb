@@ -3,6 +3,7 @@ class JobDecorator < ApplicationDecorator
 
   delegate_all
   decorates_association :city
+  decorates_association :user
 
   def city_name
     object.cities&.first&.name
@@ -18,5 +19,9 @@ class JobDecorator < ApplicationDecorator
 
   def display_description
     simple_format object.description
+  end
+
+  def apply_available(user)
+    object.users.find_by(id: user.id)
   end
 end
