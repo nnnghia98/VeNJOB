@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index, :show]
   get "jobs/city/:city_id", to: "jobs#index", as: :city_jobs
   get "jobs/industry/:industry_id", to: "jobs#index", as: :industry_jobs
+  get "apply", to: "jobs#apply"
+  get "confirm", to: "jobs#confirm_apply"
+  post "done", to: 'jobs#finish_apply'
   devise_for :users
   root "tops#index"
   namespace :users do

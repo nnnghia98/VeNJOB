@@ -1,0 +1,40 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">New</li>
+    <li class="breadcrumb-item">Confirmation</li>
+    <li class="breadcrumb-item">Finish</li>
+  </ol>
+</nav>
+
+
+<h3>Apply form</h3>
+<%= form_for "apply_info", url: confirm_path, method: :get do |f| %>
+  <%= f.hidden_field :job_id, value: @job_id %>
+
+  <div class="form-group">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, value: params[:first_name] || @current_user.first_name,
+                                  class: "form-control", required: "true" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, value: params[:last_name] || @current_user.last_name,
+                                 class: "form-control", required: "true" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, value: params[:email] || @current_user.email,
+                              class: "form-control", required: "true" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cv_path %>
+    <input type="file" class="form-control-file" id="cv_path">
+  </div>
+
+  <div class="actions text-center">
+    <%= f.submit "Confirm", class: "btn btn-lg btn-primary"%>
+  </div>
+<% end %>

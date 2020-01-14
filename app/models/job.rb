@@ -37,7 +37,15 @@ class Job < ApplicationRecord
   has_many :industry_jobs
   has_many :industries, through: :industry_jobs
 
+  has_many :user_jobs
+  has_many :users, through: :user_jobs
+
   def self.latest_job
     @latest_job ||= order(updated_at: :desc).take(Settings.top.job.limit)
+  end
+
+  def apply_available
+    user = User.find_by(:id)
+    user_jobs.find_by(job_id: @job_id, user_id: user.id)
   end
 end
