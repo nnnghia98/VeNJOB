@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+  before_action :authenticate_user!, only: [:apply, :confirm_apply, :finish_apply]
+
   def index
     if params[:city_id]
       @city = City.find(params[:city_id])
