@@ -5,6 +5,6 @@ class Users::MyPagesController < ApplicationController
   end
 
   def applied_jobs
-    @applied_jobs = current_user.jobs.all.decorate
+    @applied_jobs = current_user.jobs.all.includes(:cities).decorate
   end
 end
