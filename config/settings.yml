@@ -9,3 +9,11 @@ top:
     limit: 9
   job:
     limit: 5
+
+solr:
+  connection:
+    read_timeout: 120
+    open_timeout: 120
+    retry_503: 1
+    retry_after_limit: 1
+    server_url: "http://localhost:8983/solr/venjob"
