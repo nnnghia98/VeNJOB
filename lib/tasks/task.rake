@@ -22,6 +22,11 @@ namespace :solr do
     SolrService.new.delete_data
 
     delete = ActiveSupport::Logger.new("log/solr_service.log")
-    delete.info "Solr delete data succesfully at #{Time.current}"
+    delete.info "Solr delete all data succesfully at #{Time.current}"
+  end
+
+  desc "solr search"
+  task solr_search: :environment do
+    SolrService.new.search(@search)
   end
 end

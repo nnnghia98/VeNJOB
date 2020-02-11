@@ -3,17 +3,20 @@ class JobsController < ApplicationController
   before_action :find_user, only: :apply_available
 
   def index
+    @search = params[:search] || "*:*"
     if params[:city_id]
       @city = City.find(params[:city_id])
       @jobs = @city.jobs
+      @jobs = @jobs.page(params[:page]).per(Settings.job.per_page).decorate
     elsif params[:industry_id]
       @industry = Industry.find(params[:industry_id])
       @jobs = @industry.jobs
+      @jobs = @jobs.page(params[:page]).per(Settings.job.per_page).decorate
     else
-      @jobs = Job.all
+      @jobs = SolrService.new.search(@search)
     end
 
-    @jobs = @jobs.page(params[:page]).per(Settings.job.per_page).decorate
+    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(Settings.job.per_page)
   end
 
   def show

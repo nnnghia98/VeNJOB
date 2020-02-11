@@ -3,10 +3,10 @@ require "rsolr"
 class SolrService
   def initialize
     @solr = RSolr.connect(
-      :url => Settings.solr.connection.server_url,
-      :read_timeout => Settings.solr.connection.read_timeout,
-      :open_timeout => Settings.solr.connection.open_timeout,
-      :retry_503 => Settings.solr.connection.retry_503
+      url: Settings.solr.connection.server_url,
+      read_timeout: Settings.solr.connection.read_timeout,
+      open_timeout: Settings.solr.connection.open_timeout,
+      retry_503: Settings.solr.connection.retry_503
     )
   end
 
@@ -16,13 +16,12 @@ class SolrService
       {
         id: job.id,
         title: job.title,
-        category: job.category,
+        industry: job.industries&.first&.name,
         description: job.description,
         short_des: job.short_des,
         salary: job.salary,
         company: job.company.name,
         city: job.cities&.first&.name,
-        industry: job.industries&.first&.name
       }
     end
     @solr.add jobs_solr_index
@@ -30,14 +29,22 @@ class SolrService
   end
 
   def delete_data
-    jobs = Job.includes(:cities, :industries, :company).all
-    jobs_solr_delete = jobs.map do |job|
-      {
-        id: job.id
-      }
-    end
-
-    @solr.delete_by_id jobs_solr_delete
+    @solr.delete_by_query("*:*")
     @solr.commit
+  end
+
+  def search(params)
+    # city = @city.present? ? "city:\"#{escape_str(@city.name)}\"" : ""
+    # industry = @industry.present? ? "industry:\"#{escape_str(@industry.name)}\"" : ""
+    response = @solr.get "select", params: {
+      q: "#{params}",
+      # fq: [industry, city],
+      rows: Job.count
+    }
+    response["response"]["docs"]
+  end
+
+  def escape_str(str)
+    RSolr.solr_escape(str)
   end
 end

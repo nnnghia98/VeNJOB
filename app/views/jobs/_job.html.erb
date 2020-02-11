@@ -2,19 +2,19 @@
   <div class="job_data">
     <dl class="job_data_row">
       <dt>Title</dt>
-      <dd><%= link_to job.title, job_path(job.id) %></dd>
+      <dd><%= link_to job["title"], job_path(job["id"]) %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Short description</dt>
-      <dd><%= job.display_short_des %></dd>
+      <dd><%= job["short_des"]&.truncate(250) %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Salary</dt>
-      <dd><%= job.salary %></dd>
+      <dd><%= job["salary"] %></dd>
     </dl>
     <dl class="job_data_row">
       <dt>Location</dt>
-      <dd><%= job.city_name %></dd>
+      <dd><%= job["city"] %></dd>
     </dl>
   </div>
   <button type="button" class="btn btn-outline-secondary">Favorite</button>
