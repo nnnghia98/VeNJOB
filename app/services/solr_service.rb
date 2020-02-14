@@ -37,7 +37,7 @@ class SolrService
     # city = @city.present? ? "city:\"#{escape_str(@city.name)}\"" : ""
     # industry = @industry.present? ? "industry:\"#{escape_str(@industry.name)}\"" : ""
     response = @solr.get "select", params: {
-      q: "#{params}",
+      q: "*#{params}*",
       # fq: [industry, city],
       rows: Job.count
     }

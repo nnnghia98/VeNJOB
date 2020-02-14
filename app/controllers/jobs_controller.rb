@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   before_action :find_user, only: :apply_available
 
   def index
-    @search = params[:search] || "*:*"
+    @search = params[:search] || ":"
     if params[:city_id]
       @city = City.find(params[:city_id])
       @jobs = @city.jobs
