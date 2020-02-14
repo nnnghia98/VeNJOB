@@ -21,4 +21,7 @@ Rails.application.routes.draw do
     end
   end
   get "admin", to: "admins#index", as: :admin
+  resource :favorites, only: [:create, :destroy]
+  # post "favorite", to: "favorites#create"
+  # delete "unfavorite", to: "favorites#destroy"
 end

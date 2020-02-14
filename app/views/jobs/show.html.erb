@@ -31,7 +31,7 @@
 </div>
 
 <div class="job_detail_button">
-  <%= link_to "Favorite", "#", class: "btn btn-primary float-right" %>
+  <%= render "shared/favorite_btn" %>
   <% if user_signed_in? && @job.apply_available(current_user) %>
     <button type="button" class="btn btn-primary float-right mx-3" disabled>Apply</button>
   <% else %>
