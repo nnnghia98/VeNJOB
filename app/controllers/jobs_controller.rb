@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!, only: [:apply, :confirm_apply, :finish_apply]
+  before_action :authenticate_user!, only: [:apply, :confirm_apply, :finish_apply, :applied_jobs]
   before_action :find_user, only: :apply_available
 
   def index

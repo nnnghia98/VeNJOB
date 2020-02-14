@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   resources :companies, only: :index
   resources :industries, only: :index
   resources :cities, only: :index
-  resources :jobs, only: [:index, :show]
-  get "jobs/city/:city_id", to: "jobs#index", as: :city_jobs
-  get "jobs/industry/:industry_id", to: "jobs#index", as: :industry_jobs
+  resources :jobs, only: [:index, :show] do
+    collection do
+      get "city/:city_id", action: :index, as: :city
+      get "industry/:industry_id", action: :index, as: :industry
+    end
+  end
   get "apply", to: "jobs#apply"
   get "confirm", to: "jobs#confirm_apply"
   post "done", to: 'jobs#finish_apply'
@@ -12,7 +15,9 @@ Rails.application.routes.draw do
   root "tops#index"
   namespace :users do
     resource :my_page, only: :show do
-      get "/jobs", to: "my_pages#applied_jobs"
+      collection do
+        get "jobs", action: :applied_jobs, as: :applied_jobs
+      end
     end
   end
 end

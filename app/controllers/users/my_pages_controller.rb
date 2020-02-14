@@ -1,10 +1,10 @@
 class Users::MyPagesController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :applied_jobs]
+  before_action :authenticate_user!, only: [:show]
 
   def show
   end
 
   def applied_jobs
-    @applied_jobs = current_user.jobs.all.includes(:cities).decorate
+    @applied_jobs = current_user.jobs.includes(:cities).decorate
   end
 end
