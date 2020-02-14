@@ -53,6 +53,6 @@ class JobsController < ApplicationController
   end
 
   def find_user
-    @user = User.fint_by(:id)
+    @user = User.find_by(:id)
   end
 end
