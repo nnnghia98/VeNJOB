@@ -1,4 +1,7 @@
 class JobsController < ApplicationController
+  before_action :authenticate_user!, only: [:apply, :confirm_apply, :finish_apply, :applied_jobs]
+  before_action :find_user, only: :apply_available
+
   def index
     if params[:city_id]
       @city = City.find(params[:city_id])
@@ -39,9 +42,17 @@ class JobsController < ApplicationController
     end
   end
 
+  def apply_available
+    user_jobs.find_by(job_id: @job_id, user_id: @user.id)
+  end
+
   private
 
   def confirm_apply_info_params
     params.require(:confirm_apply_info).permit(:job_id, :first_name, :last_name, :email)
+  end
+
+  def find_user
+    @user = User.find_by(:id)
   end
 end
