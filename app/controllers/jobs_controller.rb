@@ -13,7 +13,8 @@ class JobsController < ApplicationController
       @jobs = @industry.jobs
       @jobs = @jobs.page(params[:page]).per(Settings.job.per_page).decorate
     else
-      @jobs = SolrService.new.search(@search)
+      @jobs_count = SolrService.new.search(@search)["numFound"]
+      @jobs = SolrService.new.search(@search)["docs"]
     end
 
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(Settings.job.per_page)

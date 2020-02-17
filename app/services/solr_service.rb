@@ -41,7 +41,7 @@ class SolrService
       # fq: [industry, city],
       rows: Job.count
     }
-    response["response"]["docs"]
+    response["response"]
   end
 
   def escape_str(str)
