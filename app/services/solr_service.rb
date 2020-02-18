@@ -1,5 +1,4 @@
 require "rsolr"
-require 'benchmark'
 
 class SolrService
   def initialize(search_keyword)

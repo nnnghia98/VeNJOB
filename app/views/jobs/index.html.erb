@@ -3,7 +3,7 @@
   <%= submit_tag "Search", class: "btn btn-primary mb-2" %>
 <% end %>
 
-<h3>Total: <%= view_jobs_count(@jobs_count) %></h3>
+<h3>Total: <%= @jobs_count %></h3>
 <h3>Result for: <%= view_search_result %></h3>
 
 <%= paginate @jobs %>
