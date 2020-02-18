@@ -70,7 +70,7 @@ class SolrService
     industry_name = industry.name
 
     q = "*:*"
-    fq = "city: #{escape_str(industry_name)}"
+    fq = "industry: #{escape_str(industry_name)}"
 
     send_request(q, fq)
   end
