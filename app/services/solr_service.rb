@@ -2,13 +2,15 @@ require "rsolr"
 require 'benchmark'
 
 class SolrService
-  def initialize
+  def initialize(search_keyword)
     @solr = RSolr.connect(
       url: Settings.solr.connection.server_url,
       read_timeout: Settings.solr.connection.read_timeout,
       open_timeout: Settings.solr.connection.open_timeout,
       retry_503: Settings.solr.connection.retry_503
     )
+
+    @search_keyword = search_keyword
   end
 
   def add_data
@@ -47,29 +49,37 @@ class SolrService
     @solr.commit
   end
 
-  def search(params)
-    response = @solr.get "select", params: {
-      q: "*#{params}*",
-      rows: Job.count
-    }
-    response["response"]
+  def query_all
+    q = "*#{@search_keyword}*"
+    fq = ""
+
+    send_request(q, fq)
   end
 
-  def query_by_city(city_name)
-    city = "city: #{escape_str(city_name)}"
-    response = @solr.get "select", params: {
-      q: "*:*",
-      fq: city,
-      rows: Job.count
-    }
-    response["response"]
+  def query_by_city
+    city = City.find(@search_keyword)
+    city_name = city.name
+
+    q = "*:*"
+    fq = "city: #{escape_str(city_name)}"
+
+    send_request(q, fq)
   end
 
-  def query_by_industry(industry_name)
-    industry = "industry: #{escape_str(industry_name)}"
+  def query_by_industry
+    industry = Industry.find(@search_keyword)
+    industry_name = industry.name
+
+    q = "*:*"
+    fq = "city: #{escape_str(industry_name)}"
+
+    send_request(q, fq)
+  end
+
+  def send_request(q, fq)
     response = @solr.get "select", params: {
-      q: "*:*",
-      fq: industry,
+      q: q,
+      fq: fq,
       rows: Job.count
     }
     response["response"]

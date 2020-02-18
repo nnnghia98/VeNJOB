@@ -3,23 +3,20 @@ class JobsController < ApplicationController
   before_action :find_user, only: :apply_available
 
   def index
-    @search = params[:search] || ":"
-    @solr = SolrService.new
+    @search = params[:search] || params[:city_id] || params[:industry_id] || ":"
+    solr = SolrService.new(@search)
 
     if params[:city_id]
-      @city = City.find(params[:city_id])
-      @city_name = @city.name
-      @jobs = @solr.query_by_city(@city_name)["docs"]
-      @jobs_count = @solr.query_by_city(@city_name)["numFound"]
+      @jobs = solr.query_by_city["docs"]
+      @jobs_count = solr.query_by_city["numFound"]
     elsif params[:industry_id]
-      @industry = Industry.find(params[:industry_id])
-      @industry_name = @industry.name
-      @jobs = @solr.query_by_industry(@industry_name)["docs"]
-      @jobs_count = @solr.query_by_industry(@industry_name)["numFound"]
+      @jobs = solr.query_by_industry["docs"]
+      @jobs_count = solr.query_by_industry["numFound"]
     else
-      @jobs = @solr.search(@search)["docs"]
-      @jobs_count = @solr.search(@search)["numFound"]
+      @jobs = solr.query_all["docs"]
+      @jobs_count = solr.query_all["numFound"]
     end
+
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(Settings.job.per_page)
   end
 
