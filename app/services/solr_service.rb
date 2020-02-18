@@ -12,7 +12,6 @@ class SolrService
   end
 
   def add_data
-
     jobs = Job.includes(:cities, :industries, :company).all
 
     jobs_solr_index = jobs.map do |job|
