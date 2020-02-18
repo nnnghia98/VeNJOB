@@ -3,10 +3,8 @@
   <%= submit_tag "Search", class: "btn btn-primary mb-2" %>
 <% end %>
 
-<h3>Total: <%= params[:city_id] ? @city.job_count :
-              (params[:industry_id] ? @industry.job_count : @jobs_count) %></h3>
-<h3>Result for: <%= params[:city_id] ? "City: #{@city.name}" :
-                   (params[:industry_id] ? "Industry: #{@industry.name}" : params[:search]) %></h3>
+<h3>Total: <%= view_jobs_count(@jobs_count) %></h3>
+<h3>Result for: <%= view_search_result %></h3>
 
 <%= paginate @jobs %>
 

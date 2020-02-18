@@ -4,19 +4,22 @@ class JobsController < ApplicationController
 
   def index
     @search = params[:search] || ":"
+    @solr = SolrService.new
+
     if params[:city_id]
       @city = City.find(params[:city_id])
-      @jobs = @city.jobs
-      @jobs = @jobs.page(params[:page]).per(Settings.job.per_page).decorate
+      @city_name = @city.name
+      @jobs = @solr.query_by_city(@city_name)["docs"]
+      @jobs_count = @solr.query_by_city(@city_name)["numFound"]
     elsif params[:industry_id]
       @industry = Industry.find(params[:industry_id])
-      @jobs = @industry.jobs
-      @jobs = @jobs.page(params[:page]).per(Settings.job.per_page).decorate
+      @industry_name = @industry.name
+      @jobs = @solr.query_by_industry(@industry_name)["docs"]
+      @jobs_count = @solr.query_by_industry(@industry_name)["numFound"]
     else
-      @jobs_count = SolrService.new.search(@search)["numFound"]
-      @jobs = SolrService.new.search(@search)["docs"]
+      @jobs = @solr.search(@search)["docs"]
+      @jobs_count = @solr.search(@search)["numFound"]
     end
-
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(Settings.job.per_page)
   end
 

@@ -1,4 +1,5 @@
 require "rsolr"
+require 'benchmark'
 
 class SolrService
   def initialize
@@ -11,7 +12,9 @@ class SolrService
   end
 
   def add_data
+
     jobs = Job.includes(:cities, :industries, :company).all
+
     jobs_solr_index = jobs.map do |job|
       {
         id: job.id,
@@ -24,7 +27,19 @@ class SolrService
         city: job.cities&.first&.name,
       }
     end
-    @solr.add jobs_solr_index
+
+    jobs_solr_index.each_slice(5000) do |job|
+      @solr.add job
+      rescue Exception
+        job.each do |j|
+          @solr.add j
+          rescue
+            solr_index_error = ActiveSupport::Logger.new("log/solr_errors.log")
+            solr_index_error.info "This block got error! Cannot add job with id #{job.id}"
+            next
+        end
+    end
+
     @solr.commit
   end
 
@@ -34,11 +49,28 @@ class SolrService
   end
 
   def search(params)
-    # city = @city.present? ? "city:\"#{escape_str(@city.name)}\"" : ""
-    # industry = @industry.present? ? "industry:\"#{escape_str(@industry.name)}\"" : ""
     response = @solr.get "select", params: {
       q: "*#{params}*",
-      # fq: [industry, city],
+      rows: Job.count
+    }
+    response["response"]
+  end
+
+  def query_by_city(city_name)
+    city = "city: #{escape_str(city_name)}"
+    response = @solr.get "select", params: {
+      q: "*:*",
+      fq: city,
+      rows: Job.count
+    }
+    response["response"]
+  end
+
+  def query_by_industry(industry_name)
+    industry = "industry: #{escape_str(industry_name)}"
+    response = @solr.get "select", params: {
+      q: "*:*",
+      fq: industry,
       rows: Job.count
     }
     response["response"]

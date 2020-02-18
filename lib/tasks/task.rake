@@ -13,20 +13,15 @@ namespace :solr do
   task solr_index: :environment do
     SolrService.new.add_data
 
-    index = ActiveSupport::Logger.new("log/solr_service.log")
-    index.info "Solr index data succesfully at #{Time.current}"
+    solr_index_data = ActiveSupport::Logger.new("log/solr_service.log")
+    solr_index_data.info "Solr index data succesfully at #{Time.current}"
   end
 
   desc "solr delete data"
   task solr_delete: :environment do
     SolrService.new.delete_data
 
-    delete = ActiveSupport::Logger.new("log/solr_service.log")
-    delete.info "Solr delete all data succesfully at #{Time.current}"
-  end
-
-  desc "solr search"
-  task solr_search: :environment do
-    SolrService.new.search(@search)
+    solr_delete_data = ActiveSupport::Logger.new("log/solr_service.log")
+    solr_delete_data.info "Solr delete all data succesfully at #{Time.current}"
   end
 end
