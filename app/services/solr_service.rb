@@ -1,7 +1,7 @@
 require "rsolr"
 
 class SolrService
-  def initialize(search_keyword = {})
+  def initialize(params = {search: "*:*"})
     @solr = RSolr.connect(
       url: Settings.solr.connection.server_url,
       read_timeout: Settings.solr.connection.read_timeout,
@@ -9,7 +9,7 @@ class SolrService
       retry_503: Settings.solr.connection.retry_503
     )
 
-    @search_keyword = search_keyword
+    @params = params
   end
 
   def add_data
@@ -49,14 +49,14 @@ class SolrService
   end
 
   def query_all
-    q = "*#{@search_keyword}*"
+    q = "*#{@params[:search]}*"
     fq = ""
 
     send_request(q, fq)
   end
 
   def query_by_city
-    city = City.find_by(id: @search_keyword)
+    city = City.find_by(id: @params[:city_id])
     return { "numFound": 0, "docs": [] } unless city
 
     city_name = city.name
@@ -69,7 +69,7 @@ class SolrService
   end
 
   def query_by_industry
-    industry = Industry.find_by(id: @search_keyword)
+    industry = Industry.find_by(id: @params[:industry_id])
     return { "numFound": 0, "docs": [] } unless industry
 
     industry_name = industry.name

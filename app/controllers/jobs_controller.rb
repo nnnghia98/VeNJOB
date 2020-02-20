@@ -4,7 +4,7 @@ class JobsController < ApplicationController
   before_action :validate_city_industry, only: :index
 
   def index
-    @search = params[:search] || params[:city_id] || params[:industry_id] || ":"
+    @search = params
     solr = SolrService.new(@search)
 
     if params[:city_id]
