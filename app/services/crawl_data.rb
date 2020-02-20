@@ -1,5 +1,6 @@
 require "nokogiri"
 require "open-uri"
+require "resolv-replace"
 
 class CrawlData
   def initialize
@@ -25,17 +26,18 @@ class CrawlData
 
         # Job title
         job_title = job_page.css("div.top-job-info h1").text.strip
+        puts job_title
         # Job post date
         job_post_date = job_page.css("div.datepost span").text
 
-        job_workplace, job_salary, job_position, job_expiration_date, job_industries, job_level = ""
+        job_salary, job_position, job_expiration_date, job_industries, job_level = ""
+        job_workplace = []
         detail_job_new = job_page.css("ul.DetailJobNew li p")
 
         (0..detail_job_new.count - 1).each do |detail_part|
           detail = detail_job_new[detail_part].text
           if detail.include?("Nơi làm việc")
             job_workplace = detail.gsub("/[\r\n]+/", "").partition(":").last.split(",")
-            binding.pry
           elsif detail.include?("Lương")
             job_salary = detail.gsub("/[\r\n]+/", "").partition(":").last.strip
           elsif detail.include?("Cấp bậc")
