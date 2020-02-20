@@ -26,7 +26,10 @@ class CrawlData
 
         # Job title
         job_title = job_page.css("div.top-job-info h1").text.strip
-        puts job_title
+
+        crawl_job_title_logger = ActiveSupport::Logger.new("log/crawl_data.log")
+        crawl_job_title_logger.info "#{job_title}"
+
         # Job post date
         job_post_date = job_page.css("div.datepost span").text
 
