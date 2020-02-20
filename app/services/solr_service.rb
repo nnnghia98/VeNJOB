@@ -1,7 +1,7 @@
 require "rsolr"
 
 class SolrService
-  def initialize(search_keyword)
+  def initialize(search_keyword = {})
     @solr = RSolr.connect(
       url: Settings.solr.connection.server_url,
       read_timeout: Settings.solr.connection.read_timeout,
@@ -28,11 +28,11 @@ class SolrService
       }
     end
 
-    jobs_solr_index.each_slice(5000) do |job|
-      @solr.add job
+    jobs_solr_index.each_slice(5000) do |jobs|
+      @solr.add jobs
       rescue Exception
-        job.each do |j|
-          @solr.add j
+        jobs.each do |job|
+          @solr.add job
           rescue
             solr_index_error = ActiveSupport::Logger.new("log/solr_errors.log")
             solr_index_error.info "This block got error! Cannot add job with id #{job.id}"
@@ -56,8 +56,11 @@ class SolrService
   end
 
   def query_by_city
-    city = City.find(@search_keyword)
+    city = City.find_by(id: @search_keyword)
+    return { "numFound": 0, "docs": [] } unless city
+
     city_name = city.name
+
 
     q = "*:*"
     fq = "city: #{escape_str(city_name)}"
@@ -66,7 +69,9 @@ class SolrService
   end
 
   def query_by_industry
-    industry = Industry.find(@search_keyword)
+    industry = Industry.find_by(id: @search_keyword)
+    return { "numFound": 0, "docs": [] } unless industry
+
     industry_name = industry.name
 
     q = "*:*"
