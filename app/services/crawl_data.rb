@@ -35,6 +35,7 @@ class CrawlData
           detail = detail_job_new[detail_part].text
           if detail.include?("Nơi làm việc")
             job_workplace = detail.gsub("/[\r\n]+/", "").partition(":").last.split(",")
+            binding.pry
           elsif detail.include?("Lương")
             job_salary = detail.gsub("/[\r\n]+/", "").partition(":").last.strip
           elsif detail.include?("Cấp bậc")
@@ -104,7 +105,7 @@ class CrawlData
 
   def city_id(name)
     name = name.strip
-    City.find_or_create_by(name: city_name, region: "Việt Nam").id
+    City.find_or_create_by(name: name, region: "Việt Nam").id
   end
 
   def job_id(code = nil, title, salary, description, requirement, level, post_date, expiration_date, company_id)
