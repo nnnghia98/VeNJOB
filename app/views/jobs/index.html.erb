@@ -1,6 +1,10 @@
-<h3>Total: <%= params[:city_id] ? @city.job_count :
-              (params[:industry_id] ? @industry.job_count : Job.count) %></h3>
-<h3>Result for: </h3>
+<%= form_tag( jobs_path, method: :get, class: "form-inline") do %>
+  <%= search_field_tag :search, params[:search], class: "form-control mb-2 mr-sm-2" %>
+  <%= submit_tag "Search", class: "btn btn-primary mb-2" %>
+<% end %>
+
+<h3>Total: <%= @jobs_count %></h3>
+<h3>Result for: <%= view_search_result %></h3>
 
 <%= paginate @jobs %>
 

@@ -1,19 +1,24 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:apply, :confirm_apply, :finish_apply, :applied_jobs]
   before_action :find_user, only: :apply_available
+  before_action :validate_city_industry, only: :index
 
   def index
+    @search = params
+    solr = SolrService.new(@search)
+
     if params[:city_id]
-      @city = City.find(params[:city_id])
-      @jobs = @city.jobs
+      @jobs = solr.query_by_city["docs"]
+      @jobs_count = solr.query_by_city["numFound"]
     elsif params[:industry_id]
-      @industry = Industry.find(params[:industry_id])
-      @jobs = @industry.jobs
+      @jobs = solr.query_by_industry["docs"]
+      @jobs_count = solr.query_by_industry["numFound"]
     else
-      @jobs = Job.all
+      @jobs = solr.query_all["docs"]
+      @jobs_count = solr.query_all["numFound"]
     end
 
-    @jobs = @jobs.page(params[:page]).per(Settings.job.per_page).decorate
+    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(Settings.job.per_page)
   end
 
   def show
@@ -54,5 +59,13 @@ class JobsController < ApplicationController
 
   def find_user
     @user = User.find_by(:id)
+  end
+
+  def validate_city_industry
+    if params[:city_id]
+      redirect_to jobs_path unless City.find_by(id: params[:city_id])
+    elsif params[:industry_id]
+      redirect_to jobs_path unless Industry.find_by(id: params[:industry_id])
+    end
   end
 end
