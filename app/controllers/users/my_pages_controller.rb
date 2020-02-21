@@ -1,5 +1,5 @@
 class Users::MyPagesController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, only: [:show, :admin_control]
 
   def show
   end
