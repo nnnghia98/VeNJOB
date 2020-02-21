@@ -3,10 +3,6 @@ require "open-uri"
 require "resolv-replace"
 
 class CrawlData
-  def initialize
-
-  end
-
   def crawl_web
     page = Nokogiri::HTML.parse(open(Settings.crawl.base_url))
     total_job = page.css("div.ais-stats h1.col-sm-10 span").text.gsub(",", "").to_f
