@@ -1,37 +1,40 @@
 require "nokogiri"
 require "open-uri"
 require "resolv-replace"
-
+require "openssl"
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 class CrawlData
   def crawl_web
     page = Nokogiri::HTML.parse(open(Settings.crawl.base_url))
     total_job = page.css("div.ais-stats h1.col-sm-10 span").text.gsub(",", "").to_f
     total_page = (total_job / 50).floor
     fixed_total_page = 20
+    crawl_job_title_logger = ActiveSupport::Logger.new("log/crawl_data.log")
+    crawl_job_title_logger.info "Crawl at #{Time.current}"
 
     (1..fixed_total_page).each do |each_page|
       page = Nokogiri::HTML.parse(open(URI.encode("https://careerbuilder.vn/viec-lam/tat-ca-viec-lam-trang-#{each_page}-vi.html")))
       (0..49).each do |j|
-        job_url = page.css("span.jobtitle h3 a @href")[j].text
+        job_url = page.css(".jobtitle h3 a @href")[j].text
+
 
         job_page = Nokogiri::HTML.parse(open(URI.encode(job_url)))
         # Job code
         job_code = job_url.split("/").last.split(".")[-2]
 
-        next if job_page.css("div.LeftJobCB").nil?
+        next if job_page.css(".LeftJobCB").nil?
 
         # Job title
-        job_title = job_page.css("div.top-job-info h1").text.strip
+        job_title = job_page.css(".top-job-info h1").text.strip
 
-        crawl_job_title_logger = ActiveSupport::Logger.new("log/crawl_data.log")
         crawl_job_title_logger.info "#{job_title}"
 
         # Job post date
-        job_post_date = job_page.css("div.datepost span").text
+        job_post_date = job_page.css(".datepost span").text
 
         job_salary, job_position, job_expiration_date, job_industries, job_level = ""
         job_workplace = []
-        detail_job_new = job_page.css("ul.DetailJobNew li p")
+        detail_job_new = job_page.css(".DetailJobNew li p")
 
         (0..detail_job_new.count - 1).each do |detail_part|
           detail = detail_job_new[detail_part].text
@@ -62,18 +65,18 @@ class CrawlData
 
         company_name, company_email, company_address, company_desc, company_code = ""
         # Company full name
-        unless job_page.css("div.tit_company").nil?
+        unless job_page.css(".tit_company").nil?
           company_name = job_page.css("div.tit_company").text.strip
         end
         # Company code
         company_code = job_url.split("/").last.split("-").last.split(".")[-2].strip
 
         # Company address
-        unless job_page.css("p.TitleDetailNew label")[0].nil?
+        unless job_page.css(".TitleDetailNew label")[0].nil?
           company_address = job_page.css("p.TitleDetailNew label")[0].text.strip
         end
         # Company description
-        company_desc = job_page.css("span#emp_more p").text.strip
+        company_desc = job_page.css("#emp_more p").text.strip
 
         job_workplace.each do |city_name|
           city_id = city_id(city_name)
