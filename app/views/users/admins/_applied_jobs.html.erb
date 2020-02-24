@@ -1,0 +1,16 @@
+<div class="box">
+  <div class="job_data">
+    <dl class="job_data_row">
+      <dt>Title</dt>
+      <dd><%= link_to applied_jobs.title, job_path(applied_jobs.id) %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Short description</dt>
+      <dd><%= applied_jobs.description&.truncate(250) %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Salary</dt>
+      <dd><%= applied_jobs.salary %></dd>
+    </dl>
+  </div>
+</div>
