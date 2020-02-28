@@ -20,3 +20,5 @@ solr:
 
 crawl:
   base_url: "https://careerbuilder.vn/viec-lam/tat-ca-viec-lam-vi.html"
+  jobs_per_page: 50
+  fixed_total_page: 20
