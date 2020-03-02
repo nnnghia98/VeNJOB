@@ -24,4 +24,8 @@ Rails.application.routes.draw do
   resource :favorites, only: [:create, :destroy]
   # post "favorite", to: "favorites#create"
   # delete "unfavorite", to: "favorites#destroy"
+
+  resource :jobs do
+    resource :favorites, only: [:create, :destroy]
+  end
 end

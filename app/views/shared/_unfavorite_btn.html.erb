@@ -1,5 +1,7 @@
 <% if user_signed_in? %>
-  <%= link_to "Unfavorite", "#", class: "btn btn-primary float-right" %>
+  <%= form_tag(jobs_favorite_path(job_id: @job.id), method: :delete, remote: true) do  %>
+    <%= submit_tag "Unfavorite", class: "btn btn-primary float-right" %>
+  <% end %>
 <% else %>
   <button type="button" class="btn btn-primary float-right" disabled>Unfavorite</button>
 <% end %>
