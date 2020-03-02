@@ -25,3 +25,13 @@ namespace :solr do
     solr_delete_logger.info "Solr delete all data succesfully at #{Time.current}"
   end
 end
+
+namespace :crawl do
+  desc "crawl data from careerbuilder.vn"
+  task crawl_data: :environment do
+    CrawlData.new.crawl_web
+
+    # crawl = ActiveSupport::Logger.new("log/crawl_data.log")
+    # crawl.info "Crawl data from careerbuilder.vn succesfully at #{Time.current}"
+  end
+end

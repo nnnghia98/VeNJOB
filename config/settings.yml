@@ -17,3 +17,8 @@ solr:
     retry_503: 1
     retry_after_limit: 1
     server_url: "http://localhost:8983/solr/venjob"
+
+crawl:
+  base_url: "https://careerbuilder.vn/viec-lam/tat-ca-viec-lam-vi.html"
+  jobs_per_page: 50
+  fixed_total_page: 20
