@@ -4,17 +4,18 @@ class JobHtml
   end
 
   def parse_job
-    get_job_info
-    get_job_detail
+    job_info = get_job_info
+    job_detail = get_job_detail
+
     { title: get_title,
-      salary: get_job_info[:salary],
-      level: get_job_info[:level],
+      salary: job_info[:salary],
+      level: job_info[:level],
       post_date: get_post_date,
-      description: get_job_detail[:description],
-      requirement: get_job_detail[:requirement],
-      expiration_date: get_job_info[:expiration_date],
-      workplace: get_job_info[:workplace],
-      industries: get_job_info[:industries],
+      description: job_detail[:description],
+      requirement: job_detail[:requirement],
+      expiration_date: job_info[:expiration_date],
+      workplace: job_info[:workplace],
+      industries: job_info[:industries],
       company_name: get_company_name,
       company_address: get_company_address,
       company_description: get_company_description }
@@ -50,7 +51,7 @@ class JobHtml
       end
     end
 
-    return job_info
+    job_info
   end
 
   def get_job_detail
@@ -66,7 +67,7 @@ class JobHtml
       end
     end
 
-    return job_detail
+    job_detail
   end
 
   def get_company_name

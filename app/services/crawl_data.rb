@@ -25,6 +25,7 @@ class CrawlData
 
         # Job code
         job_code = job_url.split("/").last.split(".")[-2] || ""
+        job[:code] = job_code
 
         # Company code
         company_code = job_page.css(".viewmorejob a @href").present? ?
@@ -33,18 +34,17 @@ class CrawlData
         crawl_job_title_logger.info "#{job[:title]}"
 
         job[:workplace].each do |city_name|
-          city_id = get_city(city_name).id
-          company_id = get_company(company_code, job[:company_name], job[:company_address], job[:company_description]).id
-          job_id = get_job(job_code, job[:title], job[:salary],
-                          job[:description], job[:requirement],
-                          job[:level], job[:post_date],
-                          job[:expiration_date], company_id).id
-          CityJob.find_or_create_by!(job_id: job_id, city_id: city_id)
+          city_id = City.find_or_create_by(name: city_name.strip, region: "Việt Nam").id
+          job[:company_id] = get_company(company_code, job[:company_name], job[:company_address],
+                                         job[:company_description]).id
+          saved_job = save_job(job)
+
+          CityJob.find_or_create_by!(job_id: saved_job.id, city_id: city_id)
 
           job[:industries].each do |job_industry|
             job_industry = job_industry.strip
-            industry_id = get_industry(job_industry).id
-            IndustryJob.find_or_create_by!(industry_id: industry_id, job_id: job_id)
+            industry_id = Industry.find_or_create_by!(name:job_industry).id
+            IndustryJob.find_or_create_by!(industry_id: industry_id, job_id:saved_job.id)
           end
         end
       end
@@ -57,29 +57,12 @@ class CrawlData
     company
   end
 
-  def get_industry(name)
-    industry = Industry.find_or_create_by!(name: name)
-    industry
-  end
-
-  def get_city(name)
-    name = name.strip
-    City.find_or_create_by(name: name, region: "Việt Nam")
-  end
-
-  def get_job(code = nil, title, salary, description, requirement, level, post_date, expiration_date, company_id)
-    attrs = expiration_date.nil? ? {title: job_title, company_id: company_id} : {code: code}
+  def save_job(job_attrs)
+    attrs = job_attrs[:expiration_date].nil? ? {title: job_attrs[:title], company_id: job_attrs[:company_id]} :
+                                               {code: job_attrs[:code]}
     job = Job.find_or_initialize_by attrs
+    job.update_attributes(job_attrs.except(:workplace, :industries, :company_name, :company_address, :company_description))
 
-    job.update(code: code,
-               title: title,
-               salary: salary,
-               post_date: post_date,
-               description: description,
-               requirement: requirement,
-               expiration_date: expiration_date,
-               level: level,
-               company_id: company_id)
     job
   end
 end
