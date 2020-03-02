@@ -1,6 +1,5 @@
 class Users::AdminsController < ApplicationController
   before_action :authenticate_user!, only: :index
-  before_action :validate_user, only: :index
 
   def index
     redirect_to root_path unless current_user.role?
@@ -18,6 +17,8 @@ class Users::AdminsController < ApplicationController
     @applied_jobs = []
     if email != ""
       users = User.find_by(email: email)
+      redirect_to users_admin_path if users.nil?
+
       @applied_jobs = users.jobs
     elsif email = "" || nil
       all_applied_jobs = UserJob.where.not(applied_at: nil).to_a
@@ -25,12 +26,6 @@ class Users::AdminsController < ApplicationController
       (0..all_applied_jobs.count - 1).each do |each_job|
         @applied_jobs << (all_applied_jobs[each_job].job)
       end
-    end
-  end
-
-  def validate_user
-    if params[:search_user] != ""
-      redirect_to users_admin_path unless User.find_by(email: params[:search_user])
     end
   end
 end
