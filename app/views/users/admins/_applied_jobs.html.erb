@@ -5,12 +5,18 @@
       <dd><%= link_to applied_jobs.title, job_path(applied_jobs.id) %></dd>
     </dl>
     <dl class="job_data_row">
-      <dt>Short description</dt>
-      <dd><%= applied_jobs.description&.truncate(250) %></dd>
-    </dl>
-    <dl class="job_data_row">
       <dt>Salary</dt>
       <dd><%= applied_jobs.salary %></dd>
     </dl>
+    <% if @user.present?%>
+    <dl class="job_data_row">
+      <dt>User's email: </dt>
+      <dd><%= @user.email %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Applied at: </dt>
+      <dd><%= job_applied_at(applied_jobs.id) %></dd>
+    </dl>
+    <% end %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <h4>Search user's applied jobs:</h4>
 
 <%= form_tag(users_admin_path, method: :get) do |f| %>
-  <%= text_field_tag :search_user, params[:search_user], placeholder: "Enter user's email" %>
+  <%= select_tag :search_user, options_from_collection_for_select(@users, "email", "email", params[:search_user]), include_blank: "Choose user's email" %>
   <%= submit_tag "Search" %>
 <% end %>
 
