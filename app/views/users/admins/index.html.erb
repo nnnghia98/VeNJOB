@@ -1,8 +1,8 @@
 <h4>Search user's applied jobs:</h4>
 
 <%= form_tag(users_admin_path, method: :get) do |f| %>
-  <%= select_tag :search_user, options_from_collection_for_select(@users, "email", "email", params[:search_user]), include_blank: "Choose user's email" %>
+  <%= select_tag :search_user, options_from_collection_for_select(get_all_user, "email", "email", params[:search_user]), include_blank: "Choose user's email" %>
   <%= submit_tag "Search" %>
 <% end %>
 
-<%= render partial: "applied_jobs", collection: @applied_jobs %>
+<%= render partial: "applied_job", collection: @applied_jobs %>

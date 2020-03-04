@@ -4,7 +4,11 @@ module JobHelper
                        (params[:industry_id] ? "Industry: #{@jobs[0]["industry"]}" : params[:search])
   end
 
-  def job_applied_at(job_id)
-    UserJob.where.not(applied_at: nil).find_by(job_id: job_id).applied_at
+  def job_applied_at(job)
+    job.user_jobs[0].applied_at
+  end
+
+  def get_all_user
+    User.all
   end
 end
