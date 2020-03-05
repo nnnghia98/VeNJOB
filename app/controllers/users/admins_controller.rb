@@ -16,9 +16,10 @@ class Users::AdminsController < ApplicationController
       user = User.find_by(email: params[:search_user])
       return redirect_to users_admin_path, notice: "User/job not found!" if user.blank?
 
-      user.jobs
+      applied_jobs = user.jobs
+      applied_jobs.page(params[:page]).per(Settings.job.per_page)
     else
-      UserJob.where.not(applied_at: nil).collect { |uj| uj.job }
+      Job.joins(:user_jobs).where.not(user_jobs: { applied_at: nil}).distinct
     end
   end
 end

@@ -5,10 +5,6 @@ module JobHelper
   end
 
   def job_applied_at(job)
-    job.user_jobs[0].applied_at
-  end
-
-  def get_all_user
-    User.all
+    job.user_jobs.find_by(user_id: current_user.id).applied_at
   end
 end
