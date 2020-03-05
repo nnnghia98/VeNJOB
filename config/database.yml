@@ -22,6 +22,7 @@ default: &default
   secure_auth: false
   timeout: 5000
   socket: /var/run/mysqld/mysqld.sock
+  reconnect: true
 
 development:
   <<: *default

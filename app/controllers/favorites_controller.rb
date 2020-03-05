@@ -1,31 +1,31 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
-  before_action :find_favorited_job, only: [:create, :destroy]
 
   def create
-    redirect_to new_user_session_path unless user_signed_in?
-    redirect_to jobs_path if @job.id.blank?
+    redirect_to jobs_path if params[:id].blank?
+    job_id = params[:id]
 
-    job_id = @job.id
-    @all_favorite_job.find_by(job_id: job_id) ||
-    @all_favorite_job.create!(user_id: current_user.id, job_id: job_id, favorited_at: Time.current)
-
-    redirect_to job_path(job_id)
+    if get_user_job
+      @favorite_jobs = get_user_job.where.not(favorited_at: nil) ||
+                       get_user_job.update(favorited_at: Time.current)
+    else
+      @favorite_jobs = UserJob.create!(user_id: current_user.id, job_id: job_id, favorited_at: Time.current)
+    end
   end
 
   def destroy
-    redirect_to new_user_session_path unless user_signed_in?
     redirect_to jobs_path if @job.id.blank?
+    job_id = params[:id]
 
-    job_id = @job.id
-    @all_favorite_job.find_by(job_id: job_id).destroy
+    @favorited_jobs = get_user_job.where.not(favorited_at: nil)
+    @favorited_jobs = get_user_job.update(favorited_at: nil)
 
     redirect_to job_path(job_id)
   end
 
   private
 
-  def find_favorited_job
-    @all_favorite_job = current_user.user_jobs.where.not(favorited_at: nil)
+  def get_user_job
+    UserJob.find_by(user_id: current_user.id, job_id: params[:id])
   end
 end

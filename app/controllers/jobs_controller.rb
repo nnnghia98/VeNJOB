@@ -68,6 +68,7 @@ class JobsController < ApplicationController
     elsif params[:industry_id]
       redirect_to jobs_path unless Industry.find_by(id: params[:industry_id])
     end
+  end
 
   def find_applied_jobs
     @all_applied_jobs = current_user.user_jobs.where.not(applied_at: nil)
