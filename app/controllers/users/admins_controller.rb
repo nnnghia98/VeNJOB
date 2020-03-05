@@ -19,7 +19,8 @@ class Users::AdminsController < ApplicationController
       applied_jobs = user.jobs
       applied_jobs.page(params[:page]).per(Settings.job.per_page)
     else
-      Job.joins(:user_jobs).where.not(user_jobs: { applied_at: nil}).distinct
+      applied_jobs =  Job.joins(:user_jobs).where.not(user_jobs: { applied_at: nil}).distinct
+      applied_jobs.page(params[:page]).per(Settings.job.per_page)
     end
   end
 end
