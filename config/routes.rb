@@ -20,4 +20,5 @@ Rails.application.routes.draw do
       end
     end
   end
+  get "admin", to: "admins#index", as: :admin
 end

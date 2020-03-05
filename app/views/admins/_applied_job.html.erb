@@ -1,0 +1,22 @@
+<div class="box">
+  <div class="job_data">
+    <dl class="job_data_row">
+      <dt>Title</dt>
+      <dd><%= link_to applied_job.title, job_path(applied_job.id) %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Salary</dt>
+      <dd><%= applied_job.salary %></dd>
+    </dl>
+    <% if @user.present?%>
+    <dl class="job_data_row">
+      <dt>User's email: </dt>
+      <dd><%= @user.email %></dd>
+    </dl>
+    <dl class="job_data_row">
+      <dt>Applied at: </dt>
+      <dd><%= job_applied_at(applied_job) %></dd>
+    </dl>
+    <% end %>
+  </div>
+</div>

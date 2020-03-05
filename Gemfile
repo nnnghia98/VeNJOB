@@ -27,7 +27,6 @@ gem 'config'
 gem 'draper'
 gem 'rsolr'
 gem 'rsolr-ext'
-gem 'pry'
 gem 'nokogiri'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
