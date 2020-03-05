@@ -1,4 +1,4 @@
-class Users::AdminsController < ApplicationController
+class AdminsController < ApplicationController
   before_action :authenticate_user!, only: :index
 
   def index
@@ -14,7 +14,7 @@ class Users::AdminsController < ApplicationController
   def get_applied_jobs
     if params[:search_user]
       user = User.find_by(email: params[:search_user])
-      return redirect_to users_admin_path, notice: "User/job not found!" if user.blank?
+      return redirect_to admin_path, notice: "User/job not found!" if user.blank?
 
       applied_jobs = user.jobs
       applied_jobs.page(params[:page]).per(Settings.job.per_page)

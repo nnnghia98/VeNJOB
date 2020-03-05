@@ -37,6 +37,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def self.list_emails
-    @emails ||= self.all.pluck(:email)
+    @emails ||= all.pluck(:email)
   end
 end
