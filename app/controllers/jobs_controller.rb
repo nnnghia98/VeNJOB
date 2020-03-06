@@ -49,8 +49,7 @@ class JobsController < ApplicationController
   end
 
   def apply_available
-    binding.pry
-    user_jobs.where.not(applied_at: nil).find_by(job_id: @job_id, user_id: @user.id)
+    user_jobs.find_by(job_id: @job_id, user_id: @user.id)
   end
 
   private
