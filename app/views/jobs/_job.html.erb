@@ -17,11 +17,4 @@
       <dd><%= job["city"] %></dd>
     </dl>
   </div>
-  <div id="favorite_form">
-    <% if current_user.favorites.exists?(job_id: job.id) %>
-      <%= render "shared/unfavorite_btn", job_id: job.id %>
-    <% else %>
-      <%= render "shared/favorite_btn", job_id: job.id %>
-    <% end %>
-  </div>
 </div>

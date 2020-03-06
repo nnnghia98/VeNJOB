@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!, only: [:apply, :confirm_apply, :finish_apply]
+  before_action :authenticate_user!, only: [:apply, :confirm_apply, :finish_apply, :index, :show]
   before_action :find_user, only: :apply_available
   before_action :validate_city_industry, only: :index
   before_action :find_applied_jobs, only: [:apply, :confirm_apply, :finish_apply]
@@ -49,7 +49,8 @@ class JobsController < ApplicationController
   end
 
   def apply_available
-    user_jobs.find_by(job_id: @job_id, user_id: @user.id)
+    binding.pry
+    user_jobs.where.not(applied_at: nil).find_by(job_id: @job_id, user_id: @user.id)
   end
 
   private
