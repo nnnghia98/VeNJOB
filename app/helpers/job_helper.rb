@@ -13,6 +13,6 @@ module JobHelper
   end
 
   def verify_applied_job
-    UserJob.where.not(applied_at: nil).find_by(user_id: current_user.id, job_id: @job.id)
+    UserJob.find_by(user_id: current_user.id, job_id: @job.id)&.applied_at
   end
 end
