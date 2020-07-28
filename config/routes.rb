@@ -21,4 +21,7 @@ Rails.application.routes.draw do
     end
   end
   get "admin", to: "admins#index", as: :admin
+
+  post "favorite", to: "favorites#favorite"
+  post "unfavorite", to: "favorites#unfavorite"
 end
