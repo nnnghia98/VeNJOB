@@ -1,6 +1,6 @@
 # VeNJOB App
 
-Assign to nghiann@zigexn.vn
+Assign to nnnghia98@gmail.com
 
 ## Getting started
 
